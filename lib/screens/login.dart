@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:studitivity/screens/home.dart';
 import 'package:studitivity/screens/signup.dart';
 
 class Login extends StatelessWidget {
@@ -8,6 +10,17 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RxString email = ''.obs;
+    RxString password = ''.obs;
+
+    bool isValidLogin() {
+      if (email.value.isEmpty) return false;
+      if (!email.value.isEmail) return false;
+      if (password.value.isEmpty) return false;
+
+      return true;
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -50,8 +63,8 @@ class Login extends StatelessWidget {
                       color: Colors.transparent,
                     ),
                     margin: const EdgeInsets.only(top: 30.0),
-                    child: const TextField(
-                      decoration: InputDecoration(
+                    child: TextField(
+                      decoration: const InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                         hintText: "Email",
                         hintStyle: TextStyle(
@@ -60,9 +73,15 @@ class Login extends StatelessWidget {
                         ),
                         border: InputBorder.none,
                       ),
-                      style: TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.grey),
                       cursorColor: Colors.grey,
                       keyboardType: TextInputType.emailAddress,
+                      autofocus: true,
+                      autocorrect: false,
+                      onChanged: (value) {
+                        email.value = value;
+                        print('Email: $value');
+                      },
                     ),
                   ),
                   Container(
@@ -72,8 +91,8 @@ class Login extends StatelessWidget {
                       color: Colors.transparent,
                     ),
                     margin: const EdgeInsets.only(top: 30.0),
-                    child: const TextField(
-                      decoration: InputDecoration(
+                    child: TextField(
+                      decoration: const InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                         hintText: "Password",
                         hintStyle: TextStyle(
@@ -82,31 +101,49 @@ class Login extends StatelessWidget {
                         ),
                         border: InputBorder.none,
                       ),
-                      style: TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.grey),
                       cursorColor: Colors.grey,
                       keyboardType: TextInputType.text,
                       obscureText: true,
                       obscuringCharacter: '●',
+                      autocorrect: false,
+                      onChanged: (value) {
+                        password.value = value;
+                        print('Password: $value');
+                      },
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
-                    child: Container(
+                    onTap: () {
+                      if (!isValidLogin()) {
+                        Get.snackbar(
+                          'Invalid login',
+                          'Enter a valid email and password',
+                          backgroundColor: Colors.redAccent,
+                        );
+                        return;
+                      }
+
+                      Get.to(const Home());
+                      HapticFeedback.lightImpact();
+                    },
+                    child: Obx(() => Container(
                       padding: const EdgeInsets.symmetric(vertical: 15.0),
                       margin: const EdgeInsets.only(top: 30.0, bottom: 20.0),
                       alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 97, 44, 220),
-                        borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      decoration: BoxDecoration(
+                        color: isValidLogin() ? const Color.fromARGB(255, 97, 44, 220) : Colors.grey,
+                        borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                       ),
                       child: Text(
                         'Login',
                         style: GoogleFonts.lato(
                           textStyle: const TextStyle(fontSize: 18.0),
                           color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
+                    )),
                   ),
                   Text(
                     'Forgotten password?',
