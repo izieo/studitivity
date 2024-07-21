@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:studitivity/screens/create_task.dart';
 import 'package:studitivity/widgets/pill_switch.dart';
 import 'package:studitivity/widgets/task_item.dart';
 
@@ -28,17 +30,17 @@ class TaskView extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   InkWell(
-                    onTap: (){},
+                    onTap: () => Get.to(const NewTaskView()),
                     child: const Padding(
                       padding: EdgeInsets.all(6.0),
-                      child: Icon(Icons.add),
+                      child: Icon(Icons.add, color: Colors.blue),
                     ),
                   ),
                   InkWell(
                     onTap: (){},
                     child: const Padding(
                       padding: EdgeInsets.all(6.0),
-                      child: Icon(Icons.more_horiz),
+                      child: Icon(Icons.more_horiz, color: Colors.blue),
                     ),
                   ),
                 ],
