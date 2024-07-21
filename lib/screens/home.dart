@@ -1,50 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:get/get.dart';
 import 'package:studitivity/screens/calendar.dart';
+import 'package:studitivity/screens/tasks.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
+    RxInt index = 1.obs;
+
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search, color: Colors.blue),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add, color: Colors.blue),
-          ),
-        ],
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        leading: Container(
-          padding: const EdgeInsets.all(10.0),
-          child: const CircleAvatar(
-            backgroundImage: NetworkImage(
-              'https://media.licdn.com/dms/image/C5603AQEoy5iwuDZxDA/profile-displayphoto-shrink_400_400/0/1649584891937?e=1726704000&v=beta&t=2jTi9_v7RypOpiLM0IVoFJYTGgapRboF595y6bUAFdU'
-            ),
-            radius: 20.0,
-          ),
-        ),
-        title: Center(
-          child: Text(
-            '${DateFormat.MMMM().format(DateTime.now())}, ${DateTime.now().year}',
-            style: const TextStyle(color: Colors.blue),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: Obx(() => BottomNavigationBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        currentIndex: index.value,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.black,
         showUnselectedLabels: true,
+        onTap: (value) => index.value = value,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_month),
@@ -63,10 +37,23 @@ class Home extends StatelessWidget {
             label: 'Statistics',
           ),
         ],
-      ),
-      body: const SafeArea(
-        child: CalendarView(),
-      ),
+      )),
+      body: Obx(() => SafeArea(
+        child: getChild(index.value),
+      )),
     );
+  }
+
+  Widget getChild(int index) {
+    switch (index) {
+      case 0:
+        return const CalendarView();
+      case 1:
+        return const TaskView();
+      case 2:
+      case 3:
+      default:
+        return Container(color: Colors.blue);
+    }
   }
 }
