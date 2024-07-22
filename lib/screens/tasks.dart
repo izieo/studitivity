@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studitivity/screens/create_task.dart';
 import 'package:studitivity/widgets/pill_switch.dart';
+import 'package:studitivity/widgets/sort_tasks.dart';
 import 'package:studitivity/widgets/task_item.dart';
 
 class TaskView extends StatelessWidget {
@@ -37,7 +38,16 @@ class TaskView extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                    onTap: (){},
+                    onTap: () => showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(top: Radius.circular(20))
+                      ),
+                      builder: (context) {
+                        return const Wrap(children: [OrderTasks()]);
+                      }
+                    ),
                     child: const Padding(
                       padding: EdgeInsets.all(6.0),
                       child: Icon(Icons.more_horiz, color: Colors.blue),

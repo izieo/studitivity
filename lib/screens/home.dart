@@ -8,7 +8,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RxInt index = 1.obs;
+    RxInt index = 0.obs;
 
     return Scaffold(
       bottomNavigationBar: Obx(() => BottomNavigationBar(

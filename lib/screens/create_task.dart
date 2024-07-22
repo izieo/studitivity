@@ -29,7 +29,7 @@ class NewTaskView extends StatelessWidget {
                     ),
                   ),
                   const Text(
-                    'New task',
+                    'New Task',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   TextButton(

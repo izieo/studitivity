@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_week_calendar/horizontal_week_calendar.dart';
 import 'package:intl/intl.dart';
+import 'package:studitivity/screens/create_event.dart';
 import 'package:studitivity/widgets/event.dart';
 import 'package:studitivity/widgets/pill_switch.dart';
 
@@ -19,7 +20,7 @@ class CalendarView extends StatelessWidget {
             icon: const Icon(Icons.search, color: Colors.blue),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () => Get.to(const NewEventView()),
             icon: const Icon(Icons.add, color: Colors.blue),
           ),
         ],
