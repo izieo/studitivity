@@ -22,7 +22,6 @@ class SubjectsView extends StatelessWidget {
               'Edit',
               style: TextStyle(
                 fontSize: 16.0,
-                fontWeight: FontWeight.bold,
                 color: Colors.blue,
               ),
             ),

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:horizontal_week_calendar/horizontal_week_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:studitivity/screens/create_event.dart';
+import 'package:studitivity/screens/profile.dart';
 import 'package:studitivity/widgets/event.dart';
 import 'package:studitivity/widgets/pill_switch.dart';
 
@@ -26,13 +27,16 @@ class CalendarView extends StatelessWidget {
         ],
         automaticallyImplyLeading: false,
         elevation: 0,
-        leading: Container(
-          padding: const EdgeInsets.all(10.0),
-          child: const CircleAvatar(
-            backgroundImage: NetworkImage(
-              'https://media.licdn.com/dms/image/C5603AQEoy5iwuDZxDA/profile-displayphoto-shrink_400_400/0/1649584891937?e=1726704000&v=beta&t=2jTi9_v7RypOpiLM0IVoFJYTGgapRboF595y6bUAFdU'
+        leading: GestureDetector(
+          onTap: () => Get.to(const ProfileView()),
+          child: Container(
+            padding: const EdgeInsets.all(10.0),
+            child: const CircleAvatar(
+              backgroundImage: NetworkImage(
+                'https://media.licdn.com/dms/image/C5603AQEoy5iwuDZxDA/profile-displayphoto-shrink_400_400/0/1649584891937?e=1726704000&v=beta&t=2jTi9_v7RypOpiLM0IVoFJYTGgapRboF595y6bUAFdU'
+              ),
+              radius: 20.0,
             ),
-            radius: 20.0,
           ),
         ),
         title: Center(
