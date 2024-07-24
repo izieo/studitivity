@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studitivity/screens/calendar.dart';
+import 'package:studitivity/screens/group.dart';
 import 'package:studitivity/screens/tasks.dart';
 
 class Home extends StatelessWidget {
@@ -51,6 +52,7 @@ class Home extends StatelessWidget {
       case 1:
         return const TaskView();
       case 2:
+        return const GroupsView();
       case 3:
       default:
         return Container(color: Colors.blue);
