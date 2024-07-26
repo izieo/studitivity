@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studitivity/screens/create_group.dart';
 import 'package:studitivity/screens/group.dart';
+import 'package:studitivity/screens/notification.dart';
 
 class GroupsView extends StatelessWidget {
   const GroupsView({super.key});
@@ -54,10 +55,16 @@ class GroupsView extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 5.0),
-                      const Icon(
-                        Icons.notifications,
-                        color: Color.fromARGB(255, 97, 44, 220),
-                        size: 20.0,
+                      InkWell(
+                        onTap: () => Get.to(const NotificationView()),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.notifications,
+                            color: Color.fromARGB(255, 97, 44, 220),
+                            size: 20.0,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -158,7 +165,7 @@ class GroupsView extends StatelessWidget {
                           numOnline: 12,
                           numMembers: 32,
                           members: [
-                           'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-moh-adbelghaffar-771742.jpg&fm=jpg&_gl=1*1n4jr4g*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
+                            'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-moh-adbelghaffar-771742.jpg&fm=jpg&_gl=1*1n4jr4g*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
                             'https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?cs=srgb&dl=pexels-andrewpersonaltraining-697509.jpg&fm=jpg&_gl=1*85wvqc*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
                             'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-55958-614810.jpg&fm=jpg&_gl=1*svk2ei*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NzAyOC4wLjAuMA..',
                             'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?cs=srgb&dl=pexels-pixabay-415829.jpg&fm=jpg&_gl=1*17z916h*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
