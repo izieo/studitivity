@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studitivity/screens/calendar.dart';
-import 'package:studitivity/screens/group.dart';
+import 'package:studitivity/screens/groups.dart';
 import 'package:studitivity/screens/tasks.dart';
 
 class Home extends StatelessWidget {
