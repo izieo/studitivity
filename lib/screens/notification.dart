@@ -35,7 +35,7 @@ class NotificationView extends StatelessWidget {
           children: const [
             NotificationCard(
               icon: Icons.alarm,
-              title: 'Earn the Bookwarm Award',
+              title: 'Earn the Bookworm Award',
               subtitle: 'Complete 1 more 20 minutes focus session to earn the bookwarm award',
               time: '30 minutes ago',
               color: 0xff612cdb,

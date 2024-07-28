@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studitivity/screens/notification.dart';
+import 'package:studitivity/screens/block_apps.dart';
 
 class GroupDetailsView extends StatelessWidget {
   const GroupDetailsView({super.key});
@@ -80,6 +81,15 @@ class GroupDetailsView extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20.0),
+              Align(
+                alignment: Alignment.center,
+                child: InkWell(
+                  onTap: () {
+               Get.to(() => const BlockAppsPage());
+                  },
+                  child: const BlockAppFeature(),
+                ),
+              ),
               const FocusTimerCard(),
               const Wrap(
                 spacing: 20.0,
@@ -125,8 +135,8 @@ class GroupDetailsView extends StatelessWidget {
                     Icon(Icons.videocam_off, color: Colors.white, size: 30.0),
                     Icon(Icons.mic_off, color: Colors.white, size: 30.0),
                     Icon(Icons.forum, color: Colors.white, size: 30.0),
-                    Icon(Icons.music_off, color: Colors.white, size: 30.0),
                     Icon(Icons.group_add, color: Colors.white, size: 30.0),
+                    Icon(Icons.settings, color: Colors.white, size: 30.0),
                     SizedBox(width: 5.0),
                   ],
                 ),
@@ -145,7 +155,6 @@ class FocusTimerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: Get.height * 0.17,
       margin: const EdgeInsets.all(15.0),
       decoration: BoxDecoration(
         boxShadow: const [
@@ -290,7 +299,6 @@ class PersonalFocusTimer extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 10.0),
           CircleAvatar(
             backgroundImage: NetworkImage(image),
             radius: 40.0,
@@ -318,6 +326,51 @@ class PersonalFocusTimer extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class BlockAppFeature extends StatelessWidget {
+  const BlockAppFeature({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(15.0),
+      width: 190.0,
+      decoration: BoxDecoration(
+        boxShadow: const [
+          BoxShadow(
+            color: Color.fromARGB(122, 158, 158, 158),
+            blurRadius: 5.0,
+          ),
+        ],
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      child: const Card(
+        color: Colors.white,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.block, color: Color.fromARGB(255, 97, 44, 220), size: 30.0),
+              SizedBox(width: 10.0),
+              Text(
+                'Block Apps',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 97, 44, 220),
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
