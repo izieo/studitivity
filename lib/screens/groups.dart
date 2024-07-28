@@ -3,226 +3,299 @@ import 'package:get/get.dart';
 import 'package:studitivity/screens/create_group.dart';
 import 'package:studitivity/screens/group.dart';
 import 'package:studitivity/screens/notification.dart';
+import 'package:studitivity/screens/friends.dart';
+import 'package:studitivity/screens/public_groups.dart';
 
-class GroupsView extends StatelessWidget {
+class GroupsView extends StatefulWidget {
   const GroupsView({super.key});
+
+  @override
+  GroupsViewState createState() => GroupsViewState();
+}
+
+class GroupsViewState extends State<GroupsView> {
+  bool isFriendsExpanded = false;
+  bool isPublicGroupsExpanded = false;
+  bool isMyGroupsExpanded = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CircleAvatar(
-                    backgroundImage: NetworkImage(
-                      'https://media.licdn.com/dms/image/C5603AQEoy5iwuDZxDA/profile-displayphoto-shrink_400_400/0/1649584891937?e=1726704000&v=beta&t=2jTi9_v7RypOpiLM0IVoFJYTGgapRboF595y6bUAFdU'
-                    ),
-                    radius: 20.0,
-                  ),
-                  const Text(
-                    'Study Groups',
-                    style: TextStyle(
-                      fontSize: 22.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Icon(
-                        Icons.search,
-                        color: Color.fromARGB(255, 97, 44, 220),
-                        size: 20.0,
-                      ),
-                      const SizedBox(width: 5.0),
-                      Container(
-                        decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 97, 44, 220),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0))
+                      const CircleAvatar(
+                        backgroundImage: NetworkImage(
+                      'https://media.licdn.com/dms/image/C5603AQEoy5iwuDZxDA/profile-displayphoto-shrink_400_400/0/1649584891937?e=1726704000&v=beta&t=2jTi9_v7RypOpiLM0IVoFJYTGgapRboF595y6bUAFdU'
                         ),
-                        padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 12.0),
-                        child: const Row(
-                          children: [
-                            Icon(Icons.electric_bolt, color: Colors.white, size: 12.0),
-                            SizedBox(width: 3.0),
-                            Text('5', style: TextStyle(color: Colors.white))
-                          ],
+                        radius: 20.0,
+                      ),
+                      const Text(
+                        'Study Groups',
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(width: 5.0),
-                      InkWell(
-                        onTap: () => Get.to(const NotificationView()),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.notifications,
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.search,
                             color: Color.fromARGB(255, 97, 44, 220),
                             size: 20.0,
                           ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20.0),
-              Column(
-                children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Text('Friends'),
-                          Icon(Icons.keyboard_arrow_down)
+                          const SizedBox(width: 5.0),
+                          Container(
+                            decoration: const BoxDecoration(
+                              color: Color.fromARGB(255, 97, 44, 220),
+                          borderRadius: BorderRadius.all(Radius.circular(20.0))
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 12.0),
+                            child: const Row(
+                              children: [
+                                Icon(Icons.electric_bolt, color: Colors.white, size: 12.0),
+                                SizedBox(width: 3.0),
+                            Text('5', style: TextStyle(color: Colors.white))
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: 5.0),
+                          InkWell(
+                            onTap: () => Get.to(const NotificationView()),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Icon(
+                                Icons.notifications,
+                                color: Color.fromARGB(255, 97, 44, 220),
+                                size: 20.0,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
-                      Text('See All'),
                     ],
                   ),
-                  SizedBox(
-                    height: 140.0,
+                  const SizedBox(height: 20.0),
+                  Expanded(
                     child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: const [
-                        GroupMemberCard(
-                          name: 'Benjamin',
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isFriendsExpanded = !isFriendsExpanded;
+                            });
+                          },
+                          child: Container(
+                            color: Colors.transparent,
+                            padding: const EdgeInsets.symmetric(vertical: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'Friends',
+                                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                                ),
+                                Icon(isFriendsExpanded
+                                    ? Icons.keyboard_arrow_up
+                                    : Icons.keyboard_arrow_down),
+                              ],
+                            ),
+                          ),
+                        ),
+                        if (isFriendsExpanded)
+                          Column(
+                            children: [
+                              SizedBox(
+                                height: 140.0,
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: const [
+                                    GroupMemberCard(
+                                      name: 'Benjamin',
                           pictureUrl: 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-moh-adbelghaffar-771742.jpg&fm=jpg&_gl=1*1n4jr4g*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
-                          status: 'Online',
-                        ),
-                        GroupMemberCard(
-                          name: 'Jeremiah',
+                                      status: 'Online',
+                                    ),
+                                    GroupMemberCard(
+                                      name: 'Jeremiah',
                           pictureUrl: 'https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?cs=srgb&dl=pexels-andrewpersonaltraining-697509.jpg&fm=jpg&_gl=1*85wvqc*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
-                          status: 'Offline',
-                        ),
-                        GroupMemberCard(
-                          name: 'Dara',
+                                      status: 'Offline',
+                                    ),
+                                    GroupMemberCard(
+                                      name: 'Dara',
                           pictureUrl: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-55958-614810.jpg&fm=jpg&_gl=1*svk2ei*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NzAyOC4wLjAuMA..',
-                          status: 'Online',
-                        ),
-                        GroupMemberCard(
-                          name: 'Abiodun',
+                                      status: 'Online',
+                                    ),
+                                    GroupMemberCard(
+                                      name: 'Abiodun',
                           pictureUrl: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?cs=srgb&dl=pexels-pixabay-415829.jpg&fm=jpg&_gl=1*17z916h*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
-                          status: 'Online',
+                                      status: 'Online',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () => Get.to(const FriendsView()),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text('See All', style: TextStyle(color: Colors.blue)),
+                                ),
+                              ),
+                            ],
+                          ),
+                        const SizedBox(height: 20.0),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isPublicGroupsExpanded = !isPublicGroupsExpanded;
+                            });
+                          },
+                          child: Container(
+                            color: Colors.transparent,
+                            padding: const EdgeInsets.symmetric(vertical: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'Public Groups',
+                                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                                ),
+                                Icon(isPublicGroupsExpanded
+                                    ? Icons.keyboard_arrow_up
+                                    : Icons.keyboard_arrow_down),
+                              ],
+                            ),
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20.0),
-              Column(
-                children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Text('Public Groups'),
-                          Icon(Icons.keyboard_arrow_down)
-                        ],
-                      ),
-                      Text('See All'),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 160.0,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: const [
-                        StudyGroupCard(
-                          name: 'Jerry\'s Study Group',
+                        if (isPublicGroupsExpanded)
+                          Column(
+                            children: [
+                              SizedBox(
+                                height: 160.0,
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: const [
+                                    StudyGroupCard(
+                                      name: 'Jerry\'s Study Group',
                           pictureUrl: 'https://images.stockcake.com/public/6/c/0/6c059b01-9f0f-4d29-b56e-1cf1bac44156_large/zebras-at-dusk-stockcake.jpg',
-                          numOnline: 1,
-                          numMembers: 238,
-                          members: [
+                                      numOnline: 1,
+                                      numMembers: 238,
+                                      members: [
                             'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-moh-adbelghaffar-771742.jpg&fm=jpg&_gl=1*1n4jr4g*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
                             'https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?cs=srgb&dl=pexels-andrewpersonaltraining-697509.jpg&fm=jpg&_gl=1*85wvqc*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
                             'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-55958-614810.jpg&fm=jpg&_gl=1*svk2ei*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NzAyOC4wLjAuMA..',
                             'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?cs=srgb&dl=pexels-pixabay-415829.jpg&fm=jpg&_gl=1*17z916h*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
-                          ],
-                        ),
-                        StudyGroupCard(
-                          name: 'Izie\'s Study Group',
+                                      ],
+                                    ),
+                                    StudyGroupCard(
+                                      name: 'Izie\'s Study Group',
                           pictureUrl: 'https://images.stockcake.com/public/0/e/c/0ec46d36-1e97-484d-9332-f1bb231b80d2_large/flamingos-at-dusk-stockcake.jpg',
-                          numOnline: 120,
-                          numMembers: 321,
-                          members: [
+                                      numOnline: 120,
+                                      numMembers: 321,
+                                      members: [
                             'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-moh-adbelghaffar-771742.jpg&fm=jpg&_gl=1*1n4jr4g*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
                             'https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?cs=srgb&dl=pexels-andrewpersonaltraining-697509.jpg&fm=jpg&_gl=1*85wvqc*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
                             'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-55958-614810.jpg&fm=jpg&_gl=1*svk2ei*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NzAyOC4wLjAuMA..',
                             'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?cs=srgb&dl=pexels-pixabay-415829.jpg&fm=jpg&_gl=1*17z916h*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
-                          ],
-                        ),
-                        StudyGroupCard(
-                          name: 'Gloria\'s Study Group',
+                                      ],
+                                    ),
+                                    StudyGroupCard(
+                                      name: 'Gloria\'s Study Group',
                           pictureUrl: 'https://images.stockcake.com/public/2/8/8/288ea098-e768-4db2-81c8-9683ce7e0e5f_large/balloon-at-dusk-stockcake.jpg',
-                          numOnline: 12,
-                          numMembers: 32,
-                          members: [
+                                      numOnline: 12,
+                                      numMembers: 32,
+                                      members: [
                             'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-moh-adbelghaffar-771742.jpg&fm=jpg&_gl=1*1n4jr4g*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
                             'https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?cs=srgb&dl=pexels-andrewpersonaltraining-697509.jpg&fm=jpg&_gl=1*85wvqc*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
                             'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-55958-614810.jpg&fm=jpg&_gl=1*svk2ei*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NzAyOC4wLjAuMA..',
                             'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?cs=srgb&dl=pexels-pixabay-415829.jpg&fm=jpg&_gl=1*17z916h*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
-                          ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () => Get.to(const PublicGroupsView()),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text('See All', style: TextStyle(color: Colors.blue)),
+                                ),
+                              ),
+                            ],
+                          ),
+                        const SizedBox(height: 20.0),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isMyGroupsExpanded = !isMyGroupsExpanded;
+                            });
+                          },
+                          child: Container(
+                            color: Colors.transparent,
+                            padding: const EdgeInsets.symmetric(vertical: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'My Groups',
+                                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                                ),
+                                Icon(isMyGroupsExpanded
+                                    ? Icons.keyboard_arrow_up
+                                    : Icons.keyboard_arrow_down),
+                              ],
+                            ),
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20.0),
-              const Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text('My Groups'),
-                      Icon(Icons.keyboard_arrow_down),
-                    ],
-                  ),
-                  SizedBox(height: 10.0),
-                  SizedBox(
-                    height: 160.0,
-                    child: StudyGroupCard(
-                      name: 'Izie\'s Study Group',
+                        if (isMyGroupsExpanded)
+                          const SizedBox(
+                            height: 160.0,
+                            child: StudyGroupCard(
+                              name: 'Izie\'s Study Group',
                       pictureUrl: 'https://images.stockcake.com/public/0/e/c/0ec46d36-1e97-484d-9332-f1bb231b80d2_large/flamingos-at-dusk-stockcake.jpg',
-                      numOnline: 5,
-                      numMembers: 30,
-                      members: [
-                        'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-moh-adbelghaffar-771742.jpg&fm=jpg&_gl=1*1n4jr4g*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
-                            'https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?cs=srgb&dl=pexels-andrewpersonaltraining-697509.jpg&fm=jpg&_gl=1*85wvqc*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
-                            'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-55958-614810.jpg&fm=jpg&_gl=1*svk2ei*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NzAyOC4wLjAuMA..',
-                            'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?cs=srgb&dl=pexels-pixabay-415829.jpg&fm=jpg&_gl=1*17z916h*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
+                              numOnline: 5,
+                              numMembers: 30,
+                              members: [
+                            'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-moh-adbelghaffar-771742.jpg&fm=jpg&_gl=1*1n4jr4g*_ga=NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6=MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
+                                'https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?cs=srgb&dl=pexels-andrewpersonaltraining-697509.jpg&fm=jpg&_gl=1*85wvqc*_ga=NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6=MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
+                                'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-55958-614810.jpg&fm=jpg&_gl=1*svk2ei*_ga=NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6=MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
+                                'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?cs=srgb&dl=pexels-pixabay-415829.jpg&fm=jpg&_gl=1*17z916h*_ga=NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6=MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
+                              ],
+                            ),
+                          ),
+                        const SizedBox(height: 100.0), 
                       ],
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 30.0),
-              GestureDetector(
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: GestureDetector(
                 onTap: () => Get.to(const NewGroupView()),
-                child: Center(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 97, 44, 220),
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    ),
-                    child: const Text(
-                      'Create Group',
-                      style: TextStyle(fontSize: 14.0, color: Colors.white),
-                    ),
+                child: Container(
+                  margin: const EdgeInsets.all(50.0),
+                  padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 97, 44, 220),
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  ),
+                  child: const Text(
+                    'Create Group',
+                    style: TextStyle(fontSize: 14.0, color: Colors.white),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -249,7 +322,7 @@ class GroupMemberCard extends StatelessWidget {
         color: Color.fromARGB(255, 219, 218, 218),
       ),
       width: 150.0,
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(10.0), 
       margin: const EdgeInsets.only(right: 10.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -360,11 +433,11 @@ class StudyGroupCard extends StatelessWidget {
               children: [
                 Row(
                   children: members.map((member) => Container(
-                    margin: const EdgeInsets.only(right: 5.0),
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage(member),
-                      radius: 15.0,
-                    ),
+                            margin: const EdgeInsets.only(right: 5.0),
+                            child: CircleAvatar(
+                              backgroundImage: NetworkImage(member),
+                              radius: 15.0,
+                            ),
                   )).toList(),
                 ),
                 Container(
