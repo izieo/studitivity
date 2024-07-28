@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:collection/collection.dart';
 
 class PillSwitch extends StatelessWidget {
   PillSwitch({super.key, required this.items});
@@ -26,49 +27,33 @@ class PillSwitch extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
-        children: [
-          GestureDetector(
-            onTap: () => index.value = 0,
-            child: Obx(() => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30.0),
-                color: index.value == 0 ? const Color.fromARGB(255, 0, 0, 255) : Colors.transparent,
-              ),
-              padding: const EdgeInsets.symmetric(
-                vertical: 5.0,
-                horizontal: 20.0,
-              ),
-              child: Text(
-                items[0],
-                style: TextStyle(
-                  color: index.value == 0 ? Colors.white : Colors.black,
-                  fontWeight: index.value == 0 ? FontWeight.normal : FontWeight.bold,
-                ),
-              ),
-            )),
-          ),
-          GestureDetector(
-            onTap: () => index.value = 1,
-            child: Obx(() => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30.0),
-                color: index.value == 1 ? const Color.fromARGB(255, 0, 0, 255) : Colors.transparent,
-              ),
-              padding: const EdgeInsets.symmetric(
-                vertical: 5.0,
-                horizontal: 20.0,
-              ),
-              child: Text(
-                items[1],
-                style: TextStyle(
-                  color: index.value == 1 ? Colors.white : Colors.black,
-                  fontWeight: index.value == 1 ? FontWeight.normal : FontWeight.bold,
-                ),
-              ),
-            )),
-          ),
-        ],
+        children: items.mapIndexed((index, _) => buildPill(index)).toList(),
       ),
+    );
+  }
+
+  Widget buildPill(int position) {
+    return GestureDetector(
+      onTap: () => index.value = position,
+      child: Obx(() => Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30.0),
+          color: index.value == position
+            ? const Color.fromARGB(255, 0, 0, 255)
+            : Colors.transparent,
+        ),
+        padding: const EdgeInsets.symmetric(
+          vertical: 5.0,
+          horizontal: 20.0,
+        ),
+        child: Text(
+          items[position],
+          style: TextStyle(
+            color: index.value == position ? Colors.white : Colors.black,
+            fontWeight: index.value == position ? FontWeight.normal : FontWeight.bold,
+          ),
+        ),
+      )),
     );
   }
 }
