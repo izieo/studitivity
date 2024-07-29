@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "879671947070",
+    "project_id": "studitivity-tm-app",
+    "storage_bucket": "studitivity-tm-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879671947070:android:8dc269844319547a27466f",
+        "android_client_info": {
+          "package_name": "com.example.studitivity"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3ac25kfturKRPbSjPynUkiZWT7yKjEkQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

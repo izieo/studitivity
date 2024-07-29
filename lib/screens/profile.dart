@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studitivity/screens/login.dart';
 import 'package:studitivity/screens/settings.dart';
 import 'package:studitivity/screens/subjects.dart';
+import 'package:studitivity/controllers/app_controller.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -14,7 +14,9 @@ class ProfileView extends StatelessWidget {
         backgroundColor: Colors.white,
         actions: [
           GestureDetector(
-            onTap: () => Get.offAll(const Login()),
+            onTap: () {
+              Get.find<AppController>().logout();
+              },
             child: const Center(
               child: Padding(
                 padding: EdgeInsets.only(right: 10.0),
