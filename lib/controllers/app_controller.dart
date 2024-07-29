@@ -13,7 +13,7 @@ class AppController extends GetxController {
 
   _setInitialScreen() {
     Future.delayed(const Duration(milliseconds: 1000), () {
-      Get.offAll(const AuthPage());
+      Get.offAll(() => const AuthPage());
     });
   }
 

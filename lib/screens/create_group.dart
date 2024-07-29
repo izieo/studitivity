@@ -12,95 +12,100 @@ class NewGroupView extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                    onPressed: () => Get.back(),
-                    child: const Text(
-                      'Cancel',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      onPressed: () => Get.back(),
+                      child: const Text(
+                        'Cancel',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  const Text(
-                    'New Group',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Save',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
+                    const Text(
+                      'New Group',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Get.back();
+                        },
+                      child: const Text(
+                        'Save',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.transparent,
+                  ],
                 ),
-                margin: const EdgeInsets.only(top: 30.0),
-                child: TextField(
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-                    hintText: "Name",
-                    hintStyle: TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.black,
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(5.0),
+                    color: Colors.transparent,
+                  ),
+                  margin: const EdgeInsets.only(top: 30.0),
+                  child: TextField(
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                      hintText: "Name",
+                      hintStyle: TextStyle(
+                        fontSize: 14.0,
+                        color: Colors.black,
+                      ),
+                      border: InputBorder.none,
                     ),
-                    border: InputBorder.none,
+                    keyboardType: TextInputType.text,
+                    autocorrect: false,
+                    onChanged: (value) {
+                      print('Group name: $value');
+                    },
                   ),
-                  keyboardType: TextInputType.text,
-                  autocorrect: false,
-                  onChanged: (value) {
-                    print('Group name: $value');
-                  },
                 ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.transparent,
-                ),
-                margin: const EdgeInsets.only(top: 30.0, bottom: 10.0),
-                child: TextField(
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-                    hintText: "Description",
-                    hintStyle: TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.black,
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(5.0),
+                    color: Colors.transparent,
+                  ),
+                  margin: const EdgeInsets.only(top: 30.0, bottom: 10.0),
+                  child: TextField(
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                      hintText: "Description",
+                      hintStyle: TextStyle(
+                        fontSize: 14.0,
+                        color: Colors.black,
+                      ),
+                      border: InputBorder.none,
                     ),
-                    border: InputBorder.none,
+                    keyboardType: TextInputType.multiline,
+                    textInputAction: TextInputAction.done, 
+                    autocorrect: false,
+                    maxLines: 5,
+                    onChanged: (value) {
+                      print('Group Description: $value');
+                    },
                   ),
-                  keyboardType: TextInputType.multiline,
-                  autocorrect: false,
-                  maxLines: 5,
-                  onChanged: (value) {
-                    print('Group Description: $value');
-                  },
                 ),
-              ),
-              const Text(
-                'Who can access this group?',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                const Text(
+                  'Who can access this group?',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              Obx(() => RadioGroup(groupValue: groupValue.value)),
-            ],
+                Obx(() => RadioGroup(groupValue: groupValue.value)),
+              ],
+            ),
           ),
         ),
       ),
@@ -171,19 +176,23 @@ class ButtonGroup extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              Icon(icon, size: 40.0),
-              const SizedBox(width: 5.0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(text, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)),
-                  const SizedBox(height: 5.0),
-                  SizedBox(width: 292.0, child: Text(subtext)),
-                ],
-              ),
-            ],
+          Expanded(
+            child: Row(
+              children: [
+                Icon(icon, size: 40.0),
+                const SizedBox(width: 5.0),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(text, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)),
+                      const SizedBox(height: 5.0),
+                      SizedBox(width: 292.0, child: Text(subtext)),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
           const SizedBox(width: 5.0),
           Radio(

@@ -77,151 +77,153 @@ class Signup extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
           alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const CircleAvatar(
-                        backgroundColor: Colors.lightBlueAccent,
-                        child: Icon(
-                          Icons.local_fire_department,
-                          size: 15.0,
-                          color: Colors.white,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const CircleAvatar(
+                          backgroundColor: Colors.lightBlueAccent,
+                          child: Icon(
+                            Icons.local_fire_department,
+                            size: 15.0,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 10.0),
-                      Text(
-                        'Studitivity',
-                        style: GoogleFonts.lato(
-                          textStyle: const TextStyle(fontSize: 18.0),
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                        const SizedBox(width: 10.0),
+                        Text(
+                          'Studitivity',
+                          style: GoogleFonts.lato(
+                            textStyle: const TextStyle(fontSize: 18.0),
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.transparent,
+                      ],
                     ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: Colors.transparent,
+                      ),
                     margin: const EdgeInsets.only(top: 30.0),
-                    child: TextField(
-                      controller: emailController,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-                        hintText: "Email",
-                        hintStyle: TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.grey,
+                      child: TextField(
+                        controller: emailController,
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                          hintText: "Email",
+                          hintStyle: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey,
+                          ),
+                          border: InputBorder.none,
                         ),
-                        border: InputBorder.none,
+                        style: const TextStyle(color: Colors.grey),
+                        cursorColor: Colors.grey,
+                        keyboardType: TextInputType.emailAddress,
+                        autofocus: true,
+                        autocorrect: false,
                       ),
-                      style: const TextStyle(color: Colors.grey),
-                      cursorColor: Colors.grey,
-                      keyboardType: TextInputType.emailAddress,
-                      autofocus: true,
-                      autocorrect: false,
                     ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.transparent,
-                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: Colors.transparent,
+                      ),
                     margin: const EdgeInsets.only(top: 30.0),
-                    child: TextField(
-                      controller: passwordController,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-                        hintText: "Password",
-                        hintStyle: TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.grey,
+                      child: TextField(
+                        controller: passwordController,
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                          hintText: "Password",
+                          hintStyle: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey,
+                          ),
+                          border: InputBorder.none,
                         ),
-                        border: InputBorder.none,
+                        style: const TextStyle(color: Colors.grey),
+                        cursorColor: Colors.grey,
+                        keyboardType: TextInputType.text,
+                        obscureText: true,
+                        obscuringCharacter: '●',
+                        autocorrect: false,
                       ),
-                      style: const TextStyle(color: Colors.grey),
-                      cursorColor: Colors.grey,
-                      keyboardType: TextInputType.text,
-                      obscureText: true,
-                      obscuringCharacter: '●',
-                      autocorrect: false,
                     ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.transparent,
-                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: Colors.transparent,
+                      ),
                     margin: const EdgeInsets.only(top: 30.0),
-                    child: TextField(
-                      controller: confirmPasswordController,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-                        hintText: "Enter password again",
-                        hintStyle: TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.grey,
+                      child: TextField(
+                        controller: confirmPasswordController,
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                          hintText: "Enter password again",
+                          hintStyle: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey,
+                          ),
+                          border: InputBorder.none,
                         ),
-                        border: InputBorder.none,
-                      ),
-                      style: const TextStyle(color: Colors.grey),
-                      cursorColor: Colors.grey,
-                      keyboardType: TextInputType.text,
-                      obscureText: true,
-                      obscuringCharacter: '●',
-                      autocorrect: false,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () async {
-                      signUp();
-                      HapticFeedback.lightImpact();
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 15.0),
-                      margin: const EdgeInsets.only(top: 30.0, bottom: 20.0),
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 97, 44, 220),
-                        borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                      ),
-                      child: Text(
-                        'Sign up',
-                        style: GoogleFonts.lato(
-                          textStyle: const TextStyle(fontSize: 18.0),
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: const TextStyle(color: Colors.grey),
+                        cursorColor: Colors.grey,
+                        keyboardType: TextInputType.text,
+                        obscureText: true,
+                        obscuringCharacter: '●',
+                        autocorrect: false,
                       ),
                     ),
-                  ),
-                ],
-              ),
-              GestureDetector(
-                onTap: () => Get.back(),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 15.0),
-                  child: Text(
-                    'I already have an account',
-                    style: GoogleFonts.lato(
-                      textStyle: const TextStyle(fontSize: 14.0),
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
+                    GestureDetector(
+                      onTap: () async {
+                        signUp();
+                        HapticFeedback.lightImpact();
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 15.0),
+                        margin: const EdgeInsets.only(top: 30.0, bottom: 20.0),
+                        alignment: Alignment.center,
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 97, 44, 220),
+                          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                        ),
+                        child: Text(
+                          'Sign up',
+                          style: GoogleFonts.lato(
+                            textStyle: const TextStyle(fontSize: 18.0),
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                GestureDetector(
+                  onTap: () => Get.back(),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 15.0),
+                    child: Text(
+                      'I already have an account',
+                      style: GoogleFonts.lato(
+                        textStyle: const TextStyle(fontSize: 14.0),
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

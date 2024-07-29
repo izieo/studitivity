@@ -1,4 +1,3 @@
-// import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studitivity/screens/achievements.dart';
@@ -14,40 +13,33 @@ class StatsView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(height: 15.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
-                onTap: Get.back,
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Icon(Icons.close, size: 24.0, color: Colors.blue),
-                ),
-              ),
+              const Spacer(),
               const Text(
                 'My Stats',
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: 22.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              const Spacer(),
               InkWell(
                 onTap: () {},
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Icon(Icons.redo, size: 20.0, color: Colors.blue),
-                      SizedBox(height: 5.0),
-                      Text(
-                        'Share',
-                        style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                child: const Column(
+                  children: [
+                    Icon(Icons.share, size: 20.0, color: Colors.blue),
+                    SizedBox(height: 5.0),
+                    Text(
+                      'Share',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],

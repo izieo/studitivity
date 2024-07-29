@@ -8,14 +8,15 @@ class GroupDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double itemWidth = (MediaQuery.of(context).size.width - 40) / 2;
+
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
@@ -80,69 +81,83 @@ class GroupDetailsView extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 20.0),
-              Align(
-                alignment: Alignment.center,
-                child: InkWell(
-                  onTap: () {
-               Get.to(() => const BlockAppsPage());
-                  },
-                  child: const BlockAppFeature(),
-                ),
-              ),
-              const FocusTimerCard(),
-              const Wrap(
-                spacing: 20.0,
-                runSpacing: 20.0,
-                children: [
-                  PersonalFocusTimer(
-                    name: 'You',
-                    streakCount: 5,
-                    time: '1:02:31',
-                    image: 'https://media.licdn.com/dms/image/C5603AQEoy5iwuDZxDA/profile-displayphoto-shrink_400_400/0/1649584891937?e=1726704000&v=beta&t=2jTi9_v7RypOpiLM0IVoFJYTGgapRboF595y6bUAFdU',
-                  ),
-                  PersonalFocusTimer(
-                    name: 'Benjamin',
-                    streakCount: 28,
-                    time: '2:10:02',
-                    image: 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-moh-adbelghaffar-771742.jpg&fm=jpg&_gl=1*1n4jr4g*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
-                  ),
-                  PersonalFocusTimer(
-                    name: 'Jeremiah',
-                    streakCount: 102,
-                    time: '1:20:11',
-                    image: 'https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?cs=srgb&dl=pexels-andrewpersonaltraining-697509.jpg&fm=jpg&_gl=1*85wvqc*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
-                  ),
-                  PersonalFocusTimer(
-                    name: 'Dara',
-                    streakCount: 395,
-                    time: '30:00',
-                    image: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-55958-614810.jpg&fm=jpg&_gl=1*svk2ei*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NzAyOC4wLjAuMA..',
-                  ),
-                ],
-              ),
-              Container(
-                decoration: const BoxDecoration(
-                  color: Colors.black45,
-                  borderRadius: BorderRadius.all(Radius.circular(50.0))
-                ),
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-                margin: const EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(width: 5.0),
-                    Icon(Icons.videocam_off, color: Colors.white, size: 30.0),
-                    Icon(Icons.mic_off, color: Colors.white, size: 30.0),
-                    Icon(Icons.forum, color: Colors.white, size: 30.0),
-                    Icon(Icons.group_add, color: Colors.white, size: 30.0),
-                    Icon(Icons.settings, color: Colors.white, size: 30.0),
-                    SizedBox(width: 5.0),
+                    const SizedBox(height: 10.0),
+                    Align(
+                      alignment: Alignment.center,
+                      child: InkWell(
+                        onTap: () {
+                          Get.to(() => const BlockAppsPage());
+                        },
+                        child: const BlockAppFeature(),
+                      ),
+                    ),
+                    const FocusTimerCard(),
+                    Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      children: [
+                        PersonalFocusTimer(
+                          name: 'You',
+                          streakCount: 5,
+                          time: '1:02:31',
+                          image: 'https://media.licdn.com/dms/image/C5603AQEoy5iwuDZxDA/profile-displayphoto-shrink_400_400/0/1649584891937?e=1726704000&v=beta&t=2jTi9_v7RypOpiLM0IVoFJYTGgapRboF595y6bUAFdU',
+                          width: itemWidth,
+                        ),
+                        PersonalFocusTimer(
+                          name: 'Benjamin',
+                          streakCount: 28,
+                          time: '2:10:02',
+                          image: 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-moh-adbelghaffar-771742.jpg&fm=jpg&_gl=1*1n4jr4g*_ga=NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6=MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
+                          width: itemWidth,
+                        ),
+                        PersonalFocusTimer(
+                          name: 'Jeremiah',
+                          streakCount: 102,
+                          time: '1:20:11',
+                          image: 'https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?cs=srgb&dl=pexels-andrewpersonaltraining-697509.jpg&fm=jpg&_gl=1*85wvqc*_ga=NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6=MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
+                          width: itemWidth,
+                        ),
+                        PersonalFocusTimer(
+                          name: 'Dara',
+                          streakCount: 395,
+                          time: '30:00',
+                          image: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-55958-614810.jpg&fm=jpg&_gl=1*svk2ei*_ga=NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6=MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NzAyOC4wLjAuMA..',
+                          width: itemWidth,
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+            Container(
+              decoration: const BoxDecoration(
+                color: Colors.black45,
+                  borderRadius: BorderRadius.all(Radius.circular(50.0))
+              ),
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                margin: const EdgeInsets.only(left: 30.0, right: 30.0, bottom: 10.0),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(width: 5.0),
+                  Icon(Icons.videocam_off, color: Colors.white, size: 30.0),
+                  Icon(Icons.mic_off, color: Colors.white, size: 30.0),
+                  Icon(Icons.forum, color: Colors.white, size: 30.0),
+                  Icon(Icons.group_add, color: Colors.white, size: 30.0),
+                  Icon(Icons.settings, color: Colors.white, size: 30.0),
+                  SizedBox(width: 5.0),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -253,12 +268,14 @@ class PersonalFocusTimer extends StatelessWidget {
     required this.streakCount,
     required this.time,
     required this.image,
+    required this.width,
   });
 
   final String name;
   final int streakCount;
   final String time;
   final String image;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
@@ -268,8 +285,8 @@ class PersonalFocusTimer extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(15.0)),
       ),
       padding: const EdgeInsets.all(10.0),
-      height: Get.width * 0.45,
-      width: Get.width * 0.45,
+      height: width,
+      width: width,
       child: Column(
         children: [
           Row(
@@ -303,7 +320,7 @@ class PersonalFocusTimer extends StatelessWidget {
             backgroundImage: NetworkImage(image),
             radius: 40.0,
           ),
-          const SizedBox(height: 10.0),
+          const SizedBox(height: 3.0),
           Container(
             decoration: const BoxDecoration(
               color: Colors.black45,
@@ -354,7 +371,7 @@ class BlockAppFeature extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
         ),
         child: Padding(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(5.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
