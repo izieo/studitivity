@@ -30,7 +30,7 @@ class Achievements extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+        padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0),
         child: ListView(
           children: const [
             AchievementCard(
@@ -102,7 +102,7 @@ class AchievementCard extends StatelessWidget {
             children: [
               Image.network(
                 'https://img.freepik.com/free-vector/award-medal-realistic-composition-with-isolated-image-medal-with-laurel-wreath-blank-background-vector-illustration_1284-66109.jpg?t=st=1721947990~exp=1721951590~hmac=5ac9ae3d622260cfab15b6b754315947d3bd3fb372883c4d5839c97eee312944&w=1380',
-                width: 100.0,
+                width: 50.0,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

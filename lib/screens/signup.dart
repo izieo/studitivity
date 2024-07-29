@@ -68,7 +68,6 @@ class Signup extends StatelessWidget {
           onPressed: () => Get.back(),
           color: const Color.fromARGB(255, 97, 44, 220),
         ),
-        backgroundColor: Colors.white,
         shadowColor: Colors.transparent,
       ),
       body: SafeArea(

@@ -5,6 +5,7 @@ import 'package:studitivity/screens/group.dart';
 import 'package:studitivity/screens/notification.dart';
 import 'package:studitivity/screens/friends.dart';
 import 'package:studitivity/screens/public_groups.dart';
+import 'package:studitivity/screens/profile.dart'; 
 
 class GroupsView extends StatefulWidget {
   const GroupsView({super.key});
@@ -32,11 +33,14 @@ class GroupsViewState extends State<GroupsView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const CircleAvatar(
-                        backgroundImage: NetworkImage(
-                          'https://media.licdn.com/dms/image/C5603AQEoy5iwuDZxDA/profile-displayphoto-shrink_400_400/0/1649584891937?e=1726704000&v=beta&t=2jTi9_v7RypOpiLM0IVoFJYTGgapRboF595y6bUAFdU'
+                      InkWell(
+                        onTap: () => Get.to(const ProfileView()), 
+                        child: const CircleAvatar(
+                          backgroundImage: NetworkImage(
+                            'https://media.licdn.com/dms/image/C5603AQEoy5iwuDZxDA/profile-displayphoto-shrink_400_400/0/1649584891937?e=1726704000&v=beta&t=2jTi9_v7RypOpiLM0IVoFJYTGgapRboF595y6bUAFdU',
+                          ),
+                          radius: 20.0,
                         ),
-                        radius: 20.0,
                       ),
                       const Text(
                         'Study Groups',
@@ -431,10 +435,10 @@ class StudyGroupCard extends StatelessWidget {
       onTap: () => Get.to(const GroupDetailsView()),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-          image: DecorationImage(
-            image: NetworkImage(pictureUrl),
-            fit: BoxFit.cover,
+            borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+            image: DecorationImage(
+              image: NetworkImage(pictureUrl),
+              fit: BoxFit.cover,
           )
         ),
         width: Get.width * 0.7,
@@ -486,19 +490,19 @@ class StudyGroupCard extends StatelessWidget {
               children: [
                 Row(
                   children: members.map((member) => Container(
-                          margin: const EdgeInsets.only(right: 5.0),
-                          child: CircleAvatar(
-                            backgroundImage: NetworkImage(member),
-                            radius: 15.0,
-                          ),
+                            margin: const EdgeInsets.only(right: 5.0),
+                            child: CircleAvatar(
+                              backgroundImage: NetworkImage(member),
+                              radius: 15.0,
+                            ),
                   )).toList(),
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                      color: Colors.transparent,
+                      borderRadius: const BorderRadius.all(Radius.circular(10.0)),
                     border: Border.all(color: const Color.fromARGB(255, 97, 44, 220))
                   ),
                   child: const Text(
