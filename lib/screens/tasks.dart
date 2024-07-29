@@ -77,7 +77,7 @@ class TaskView extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 15.0),
-              PillSwitch(items: const ['Current (5)', 'Completed']),
+              PillSwitch(items: const ['Current', 'Completed']),
               const SizedBox(height: 15.0),
               const Row(
                 children: [
@@ -99,7 +99,7 @@ class TaskView extends StatelessWidget {
                   ),
                   SizedBox(width: 20.0),
                   Text(
-                    'Later',
+                    'All',
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
@@ -111,29 +111,34 @@ class TaskView extends StatelessWidget {
                 child: ListView(
                   children: const [
                     TaskItem(
-                      priority: 'priority',
+                      priority: 2, //high priority
                       course: 'Computer Programming',
                       task: 'Build wireframe',
+                      color: Colors.green,
                     ),
                     TaskItem(
-                      priority: 'priority',
+                      priority: 2, //high priority
                       course: 'Web Development',
                       task: 'Build wireframe',
+                      color: Colors.blue,
                     ),
                     TaskItem(
-                      priority: 'priority',
+                      priority: 1, //medium priority
                       course: 'Database Management',
                       task: 'Build prototype',
+                      color: Colors.red,
                     ),
                     TaskItem(
-                      priority: 'priority',
+                      priority: 0, //low priority,
                       course: 'Industrial Expertise',
                       task: 'Personal development report',
+                      color: Colors.yellow,
                     ),
                     TaskItem(
-                      priority: 'priority',
+                      priority: 0, //low priority
                       course: 'Research Skills',
                       task: 'Literature review',
+                      color: Colors.purple,
                     ),
                   ],
                 ),

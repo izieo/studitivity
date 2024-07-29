@@ -3,49 +3,60 @@ import 'package:flutter/material.dart';
 class TaskItem extends StatelessWidget {
   const TaskItem({
     super.key,
-    required this.priority,
+    this.priority = 1,
     required this.course,
     required this.task,
+    required this.color,
+    
   });
-
-  final String priority;
+  final int priority;
   final String course;
   final String task;
+  final Color color;
+  
 
   @override
   Widget build(BuildContext context) {
+     String priorityText = '';
+    if (priority == 1) {
+      priorityText = '!';
+    } else if (priority == 2) {
+      priorityText = '!!';
+    } 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
           Container(
-            decoration: const BoxDecoration(
-              color: Colors.yellowAccent,
+            width: 30.0,
+            height: 30.0,
+            decoration:  BoxDecoration(
+              color: color,
               shape: BoxShape.circle,
             ),
-            padding: const EdgeInsets.all(10.0),
-            margin: const EdgeInsets.only(right: 10.0),
-            child: const Text(
-              '!!',
-              style: TextStyle(
-                fontSize: 30.0,
+            alignment: Alignment.center,
+            child: Text(
+              priorityText,
+              style: const TextStyle(
+                fontSize: 20.0,
               ),
             ),
           ),
+          const SizedBox(width: 10.0),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 course,
                 style: const TextStyle(
-                  fontSize: 14.0,
+                  fontSize: 17.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 task,
                 style: const TextStyle(
-                  fontSize: 17.0,
+                  fontSize: 14.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
