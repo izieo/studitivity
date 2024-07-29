@@ -1,9 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:studitivity/screens/login.dart';
+import 'package:flutter/services.dart';
 
 class Signup extends StatelessWidget {
-  const Signup({super.key});
+  Signup({super.key});
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  void signUp() async {
+    if (passwordController.text != confirmPasswordController.text) {
+      Get.snackbar(
+        'Error',
+        'Passwords do not match.',
+        backgroundColor: Colors.redAccent,
+      );
+      return;
+    }
+
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      Get.snackbar(
+        'Success',
+        'Signup successful! Please login.',
+        backgroundColor: Colors.greenAccent,
+      );
+      Get.offAll(() => Login());
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+      if (e.code == 'invalid-email') {
+        errorMessage = 'The email address is not valid.';
+      } else if (e.code == 'weak-password') {
+        errorMessage = 'Password must be at least 6 characters in length.';
+      } else if (e.code == 'email-already-in-use') {
+        errorMessage = 'The email is already in use.';
+      } else {
+        errorMessage = 'An unknown error occurred.';
+      }
+      Get.snackbar(
+        'Error',
+        errorMessage,
+        backgroundColor: Colors.redAccent,
+      );
+    } catch (e) {
+      print("Exception: $e");
+      Get.snackbar(
+        'Error',
+        'An unknown error occurred.',
+        backgroundColor: Colors.redAccent,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +112,9 @@ class Signup extends StatelessWidget {
                       color: Colors.transparent,
                     ),
                     margin: const EdgeInsets.only(top: 30.0),
-                    child: const TextField(
-                      decoration: InputDecoration(
+                    child: TextField(
+                      controller: emailController,
+                      decoration: const InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                         hintText: "Email",
                         hintStyle: TextStyle(
@@ -68,9 +123,11 @@ class Signup extends StatelessWidget {
                         ),
                         border: InputBorder.none,
                       ),
-                      style: TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.grey),
                       cursorColor: Colors.grey,
                       keyboardType: TextInputType.emailAddress,
+                      autofocus: true,
+                      autocorrect: false,
                     ),
                   ),
                   Container(
@@ -80,8 +137,9 @@ class Signup extends StatelessWidget {
                       color: Colors.transparent,
                     ),
                     margin: const EdgeInsets.only(top: 30.0),
-                    child: const TextField(
-                      decoration: InputDecoration(
+                    child: TextField(
+                      controller: passwordController,
+                      decoration: const InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                         hintText: "Password",
                         hintStyle: TextStyle(
@@ -90,11 +148,12 @@ class Signup extends StatelessWidget {
                         ),
                         border: InputBorder.none,
                       ),
-                      style: TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.grey),
                       cursorColor: Colors.grey,
                       keyboardType: TextInputType.text,
                       obscureText: true,
                       obscuringCharacter: '●',
+                      autocorrect: false,
                     ),
                   ),
                   Container(
@@ -104,8 +163,9 @@ class Signup extends StatelessWidget {
                       color: Colors.transparent,
                     ),
                     margin: const EdgeInsets.only(top: 30.0),
-                    child: const TextField(
-                      decoration: InputDecoration(
+                    child: TextField(
+                      controller: confirmPasswordController,
+                      decoration: const InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                         hintText: "Enter password again",
                         hintStyle: TextStyle(
@@ -114,15 +174,19 @@ class Signup extends StatelessWidget {
                         ),
                         border: InputBorder.none,
                       ),
-                      style: TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.grey),
                       cursorColor: Colors.grey,
                       keyboardType: TextInputType.text,
                       obscureText: true,
                       obscuringCharacter: '●',
+                      autocorrect: false,
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      signUp();
+                      HapticFeedback.lightImpact();
+                    },
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 15.0),
                       margin: const EdgeInsets.only(top: 30.0, bottom: 20.0),
@@ -136,6 +200,7 @@ class Signup extends StatelessWidget {
                         style: GoogleFonts.lato(
                           textStyle: const TextStyle(fontSize: 18.0),
                           color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
@@ -159,7 +224,7 @@ class Signup extends StatelessWidget {
             ],
           ),
         ),
-      )
+      ),
     );
   }
 }

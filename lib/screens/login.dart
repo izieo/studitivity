@@ -161,7 +161,7 @@ class Login extends StatelessWidget {
                 ],
               ),
               GestureDetector(
-                onTap: () => Get.to(const Signup()),
+                onTap: () => Get.to( Signup()),
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 15.0),
                   margin: const EdgeInsets.only(bottom: 40.0),
