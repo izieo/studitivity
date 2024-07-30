@@ -7,8 +7,6 @@ class EventAlertPickerDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomModalDialog(
-      leading: const Icon(Icons.close, color: Colors.black),
-      title: 'Select',
       children: [
         ListTile(
           title: const Text('At time of event', style: TextStyle(fontWeight: FontWeight.bold)),

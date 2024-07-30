@@ -63,6 +63,7 @@ class TaskViewState extends State<TaskView> {
                           child: Icon(Icons.search, color: Color.fromARGB(255, 97, 44, 220), size: 20),
                         ),
                       ),
+                      const SizedBox(width: 5.0),
                       InkWell(
                         onTap: () => Get.to(const NotificationView()),
                         child: const Padding(
@@ -70,6 +71,7 @@ class TaskViewState extends State<TaskView> {
                           child: Icon(Icons.notifications, color: Color.fromARGB(255, 97, 44, 220), size: 20),
                         ),
                       ),
+                      const SizedBox(width: 5.0),
                       InkWell(
                         onTap: () => showModalBottomSheet(
                           context: context,

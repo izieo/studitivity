@@ -260,7 +260,7 @@ class NewTaskView extends StatelessWidget {
                           children: [
                             Icon(Icons.repeat, size: 20.0, color: Colors.grey),
                             SizedBox(width: 10.0),
-                            Text('Recurring', style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text('Repeat', style: TextStyle(fontWeight: FontWeight.bold)),
                           ],
                         ),
                         Icon(Icons.keyboard_arrow_down, size: 20.0),

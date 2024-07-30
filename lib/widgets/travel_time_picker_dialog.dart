@@ -7,8 +7,6 @@ class TravelTimePickerDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomModalDialog(
-      leading: const Icon(Icons.close, color: Colors.black),
-      title: 'Select',
       children: [
         ListTile(
           title: const Text('None', style: TextStyle(fontWeight: FontWeight.bold)),

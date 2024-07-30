@@ -51,24 +51,30 @@ class GroupsViewState extends State<GroupsView> {
                       ),
                       Row(
                         children: [
-                          const Icon(
-                            Icons.search,
-                            color: Color.fromARGB(255, 97, 44, 220),
-                            size: 20.0,
+                          InkWell(
+                            onTap: () {},
+                            child: const Icon(
+                              Icons.search,
+                              color: Color.fromARGB(255, 97, 44, 220),
+                              size: 20.0,
+                            ),
                           ),
                           const SizedBox(width: 5.0),
-                          Container(
-                            decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 97, 44, 220),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0))
-                            ),
-                            padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 12.0),
-                            child: const Row(
-                              children: [
-                                Icon(Icons.electric_bolt, color: Colors.white, size: 12.0),
-                                SizedBox(width: 3.0),
-                            Text('5', style: TextStyle(color: Colors.white))
-                              ],
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                color: Color.fromARGB(255, 97, 44, 220),
+                            borderRadius: BorderRadius.all(Radius.circular(20.0))
+                              ),
+                              padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 12.0),
+                              child: const Row(
+                                children: [
+                                  Icon(Icons.electric_bolt, color: Colors.white, size: 12.0),
+                                  SizedBox(width: 3.0),
+                              Text('5', style: TextStyle(color: Colors.white))
+                                ],
+                              ),
                             ),
                           ),
                           const SizedBox(width: 5.0),
@@ -342,7 +348,7 @@ class GroupsViewState extends State<GroupsView> {
         child: FloatingActionButton.extended(
            onPressed: () => Get.to(const NewGroupView()),
           backgroundColor: const Color.fromARGB(255, 97, 44, 220),
-          label: const Text('Group', style: TextStyle(color: Colors.white)),
+          label: const Text('Group', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16.0)),
           icon: const Icon(Icons.add, color: Colors.white),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),

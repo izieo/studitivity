@@ -108,47 +108,42 @@ class NotificationCard extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.only(bottom: 20.0),
-      child: Expanded(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(icon, color: Color(color), size: 30.0),
-            const SizedBox(width: 10.0),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w900,
-                    ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, color: Color(color), size: 30.0),
+          const SizedBox(width: 10.0),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w900,
                   ),
-                  const SizedBox(height: 5.0),
-                  SizedBox(
-                    width: 320.0,
-                    child: Text(
-                      subtitle,
-                      style: const TextStyle(
-                        fontSize: 14.0,
-                        color: Color.fromARGB(255, 123, 123, 123),
-                      ),
-                    ),
+                ),
+                const SizedBox(height: 5.0),
+                Text(
+                  subtitle,
+                  style: const TextStyle(
+                    fontSize: 14.0,
+                    color: Color.fromARGB(255, 123, 123, 123),
                   ),
-                  const SizedBox(height: 5.0),
-                  Text(
-                    time,
-                    style: const TextStyle(
-                      fontSize: 12.0,
-                      color: Color.fromARGB(255, 123, 123, 123),
-                    ),
+                ),
+                const SizedBox(height: 5.0),
+                Text(
+                  time,
+                  style: const TextStyle(
+                    fontSize: 12.0,
+                    color: Color.fromARGB(255, 123, 123, 123),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -30,13 +30,16 @@ class PublicGroupsView extends StatelessWidget {
             color: Color.fromARGB(255, 97, 44, 220),
           ),
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Icon(
-              Icons.search,
-              color: Color.fromARGB(255, 97, 44, 220),
-              size: 20.0,
+        actions: [
+          InkWell(
+            onTap: () {},
+            child: const Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Icon(
+                Icons.search,
+                color: Color.fromARGB(255, 97, 44, 220),
+                size: 20.0,
+              ),
             ),
           ),
         ],

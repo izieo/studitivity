@@ -7,8 +7,6 @@ class CreateSubjectDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomModalDialog(
-      title: 'Select',
-      leading: const Icon(Icons.close, color: Colors.black),
       trailing: TextButton(
         onPressed: () {
           Navigator.of(context).pop();

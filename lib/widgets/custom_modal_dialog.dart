@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 
 class CustomModalDialog extends StatelessWidget {
   final String title;
+  final double titleFontSize;
+  final FontWeight titleFontWeight;
   final List<Widget> children;
   final Widget? leading;
   final Widget? trailing;
 
   const CustomModalDialog({
     super.key,
-    required this.title,
+    this.title = 'Select', 
+    this.titleFontSize = 20.0, //default font size
+    this.titleFontWeight = FontWeight.bold, //default font weight
     required this.children,
-    this.leading,
+    this.leading = const Icon(Icons.close, color: Colors.black), //default leading icon
     this.trailing,
   });
 
@@ -21,7 +25,7 @@ class CustomModalDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 30.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -38,7 +42,10 @@ class CustomModalDialog extends StatelessWidget {
                 const Spacer(),
                 Text(
                   title,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: titleFontSize,
+                    fontWeight: titleFontWeight,
+                  ),
                 ),
                 const Spacer(),
                 GestureDetector(

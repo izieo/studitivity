@@ -17,12 +17,13 @@ class SubjectPickerDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomModalDialog(
-      title: 'Select',
-      leading: const Icon(Icons.close, color: Colors.black),
-      trailing: GestureDetector(
-        onTap: () {
-        },
-        child: const Icon(Icons.search, color: Colors.blue),
+      trailing: Padding(
+        padding: const EdgeInsets.only(right: 8.0),
+        child: IconButton(
+          onPressed: () {
+          },
+          icon: const Icon(Icons.search, color: Colors.blue),
+        ),
       ),
       children: [
         ListTile(

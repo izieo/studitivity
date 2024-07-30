@@ -20,11 +20,14 @@ class CalendarView extends StatelessWidget {
             onPressed: () {},
             icon: const Icon(Icons.search, color: Color.fromARGB(255, 97, 44, 220), size: 20),
             iconSize: 20, 
-          ),
-          IconButton(
-            onPressed: () => Get.to(const NotificationView()),
-            icon: const Icon(Icons.notifications, color: Color.fromARGB(255, 97, 44, 220), size: 20),
-            iconSize: 20,
+          ),         
+          Padding(
+            padding: const EdgeInsets.only(right: 10.0),
+            child: IconButton(
+              onPressed: () => Get.to(const NotificationView()),
+              icon: const Icon(Icons.notifications, color: Color.fromARGB(255, 97, 44, 220), size: 20),
+              iconSize: 20,
+            ),
           ),
         ],
         automaticallyImplyLeading: false,

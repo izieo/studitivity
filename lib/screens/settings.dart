@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SettingsView extends StatelessWidget {
+class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
+
+  @override
+  SettingsViewState createState() => SettingsViewState();
+}
+
+class SettingsViewState extends State<SettingsView> {
+  bool emailNotifications = true;
+  bool pushNotifications = true;
+  bool streakFeature = true;
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +48,26 @@ class SettingsView extends StatelessWidget {
               const Divider(color: Colors.black),
               settingsTile(Icons.calendar_today, 'Import Calendar'),
               const Divider(color: Colors.black),
-              settingsTile(Icons.notifications, 'Email Notifications', addSwitch: true),
+              settingsTile(Icons.notifications, 'Email Notifications', 
+                  addSwitch: true, switchValue: emailNotifications, onSwitchChanged: (value) {
+                setState(() {
+                  emailNotifications = value;
+                });
+              }),
               const Divider(color: Colors.black),
-              settingsTile(Icons.dark_mode, 'Push Notifications', addSwitch: true),
+              settingsTile(Icons.dark_mode, 'Push Notifications', 
+                  addSwitch: true, switchValue: pushNotifications, onSwitchChanged: (value) {
+                setState(() {
+                  pushNotifications = value;
+                });
+              }),
               const Divider(color: Colors.black),
-              settingsTile(Icons.electric_bolt, 'Streak Feature', addSwitch: true),
+              settingsTile(Icons.electric_bolt, 'Streak Feature', 
+                  addSwitch: true, switchValue: streakFeature, onSwitchChanged: (value) {
+                setState(() {
+                  streakFeature = value;
+                });
+              }),
             ]),
             const SizedBox(height: 20.0),
             settingsGroup([
@@ -99,7 +123,7 @@ class SettingsView extends StatelessWidget {
     );
   }
 
-  Widget settingsTile(IconData icon, String text, {bool addSwitch = false}) {
+  Widget settingsTile(IconData icon, String text, {bool addSwitch = false, bool switchValue = false, ValueChanged<bool>? onSwitchChanged}) {
     return SizedBox(
       height: 50.0,
       child: Padding(
@@ -115,8 +139,8 @@ class SettingsView extends StatelessWidget {
               ],
             ),
             addSwitch
-              ? Switch(value: false, onChanged: (value) {})
-              : const Icon(Icons.arrow_forward_ios, size: 14.0, color: Colors.black),
+              ? Switch(value: switchValue, onChanged: onSwitchChanged)
+              : const Icon(Icons.keyboard_arrow_down, size: 20.0, color: Colors.black),
           ],
         ),
       ),
