@@ -39,7 +39,7 @@ class PillSwitch extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30.0),
           color: index.value == position
-            ? Color.fromARGB(255, 106, 86, 171)//Color.fromARGB(255, 96, 67, 194)
+            ? const Color.fromARGB(255, 106, 86, 171)
             : Colors.transparent,
         ),
         padding: const EdgeInsets.symmetric(

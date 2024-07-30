@@ -36,7 +36,7 @@ class NewGroupView extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         Get.back();
-                        },
+                      },
                       child: const Text(
                         'Save',
                         style: TextStyle(
@@ -89,7 +89,7 @@ class NewGroupView extends StatelessWidget {
                       border: InputBorder.none,
                     ),
                     keyboardType: TextInputType.multiline,
-                    textInputAction: TextInputAction.done, 
+                    textInputAction: TextInputAction.done,
                     autocorrect: false,
                     maxLines: 5,
                     onChanged: (value) {
@@ -103,7 +103,9 @@ class NewGroupView extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Obx(() => RadioGroup(groupValue: groupValue.value)),
+                Obx(() => RadioGroup(groupValue: groupValue.value, onChanged: (value) {
+                  groupValue.value = value;
+                })),
               ],
             ),
           ),
@@ -114,9 +116,14 @@ class NewGroupView extends StatelessWidget {
 }
 
 class RadioGroup extends StatelessWidget {
-  RadioGroup({super.key, required this.groupValue});
+  const RadioGroup({
+    super.key,
+    required this.groupValue,
+    required this.onChanged,
+  });
 
-  int groupValue;
+  final int groupValue;
+  final ValueChanged<int> onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -128,6 +135,7 @@ class RadioGroup extends StatelessWidget {
           subtext: 'Anyone can view and join the group',
           value: 0,
           groupValue: groupValue,
+          onChanged: onChanged,
         ),
         ButtonGroup(
           icon: Icons.group,
@@ -135,6 +143,7 @@ class RadioGroup extends StatelessWidget {
           subtext: 'Only friends and people with the link can join the group',
           value: 1,
           groupValue: groupValue,
+          onChanged: onChanged,
         ),
         ButtonGroup(
           icon: Icons.lock,
@@ -142,6 +151,7 @@ class RadioGroup extends StatelessWidget {
           subtext: 'Only you can join the group',
           value: 2,
           groupValue: groupValue,
+          onChanged: onChanged,
         ),
       ],
     );
@@ -149,20 +159,22 @@ class RadioGroup extends StatelessWidget {
 }
 
 class ButtonGroup extends StatelessWidget {
-  ButtonGroup({
+  const ButtonGroup({
     super.key,
     required this.icon,
     required this.text,
     required this.subtext,
     required this.value,
-    required this.groupValue
+    required this.groupValue,
+    required this.onChanged,
   });
 
   final IconData icon;
   final String text;
   final String subtext;
   final int value;
-  int groupValue;
+  final int groupValue;
+  final ValueChanged<int> onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -187,7 +199,7 @@ class ButtonGroup extends StatelessWidget {
                     children: [
                       Text(text, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)),
                       const SizedBox(height: 5.0),
-                      SizedBox(width: 292.0, child: Text(subtext)),
+                      Text(subtext),
                     ],
                   ),
                 ),
@@ -195,16 +207,15 @@ class ButtonGroup extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 5.0),
-          Radio(
+          Radio<int>(
             value: value,
-            groupValue: null,
+            groupValue: groupValue,
             activeColor: Colors.black,
             onChanged: (value) {
               if (value != null) {
-                print('value $value');
-                groupValue = value;
+                onChanged(value);
               }
-            }
+            },
           ),
         ],
       ),

@@ -1,8 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studitivity/widgets/travel_time_picker_dialog.dart';
+import 'package:studitivity/widgets/repeat_picker_dialog.dart';
+import 'package:studitivity/widgets/calendar_picker_dialog.dart';
+import 'package:studitivity/widgets/invitees_picker_dialog.dart';
+import 'package:studitivity/widgets/event_alert_picker_dialog.dart';
 
-class NewEventView extends StatelessWidget {
+class NewEventView extends StatefulWidget {
   const NewEventView({super.key});
+
+  @override
+  NewEventViewState createState() => NewEventViewState();
+}
+
+class NewEventViewState extends State<NewEventView> {
+  bool isAllDay = false;
+
+  void _showTravelTimePickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const TravelTimePickerDialog();
+      },
+    );
+  }
+
+  void _showRepeatPickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const RepeatPickerDialog();
+      },
+    );
+  }
+
+  void _showCalendarPickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const CalendarPickerDialog();
+      },
+    );
+  }
+
+  void _showInviteesPickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const InviteesPickerDialog();
+      },
+    );
+  }
+
+  void _showEventAlertPickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const EventAlertPickerDialog();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +87,7 @@ class NewEventView extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () => Get.back(),
                     child: const Text(
                       'Add',
                       style: TextStyle(
@@ -101,7 +158,14 @@ class NewEventView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text('All-day'),
-                        Switch(value: false, onChanged: (value) {}),
+                        Switch(
+                          value: isAllDay,
+                          onChanged: (value) {
+                            setState(() {
+                              isAllDay = value;
+                            });
+                          },
+                        ),
                       ],
                     ),
                     Row(
@@ -156,79 +220,94 @@ class NewEventView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Travel Time'),
-                          Row(
-                            children: [
-                              Text('None'),
-                              Icon(Icons.unfold_more, size: 18.0)
-                            ],
-                          ),
-                        ],
+                    GestureDetector(
+                      onTap: () => _showTravelTimePickerDialog(context),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Travel Time'),
+                            Row(
+                              children: [
+                                Text('None'),
+                                Icon(Icons.unfold_more, size: 18.0)
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Repeat'),
-                          Row(
-                            children: [
-                              Text('Never'),
-                              Icon(Icons.unfold_more, size: 18.0)
-                            ],
-                          ),
-                        ],
+                    GestureDetector(
+                      onTap: () => _showRepeatPickerDialog(context),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Repeat'),
+                            Row(
+                              children: [
+                                Text('Never'),
+                                Icon(Icons.unfold_more, size: 18.0)
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Calendar'),
-                          Row(
-                            children: [
-                              Text('gmail'),
-                              Icon(Icons.unfold_more, size: 18.0)
-                            ],
-                          ),
-                        ],
+                    GestureDetector(
+                      onTap: () => _showCalendarPickerDialog(context),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Calendar'),
+                            Row(
+                              children: [
+                                Text('gmail'),
+                                Icon(Icons.unfold_more, size: 18.0)
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Invitees'),
-                          Row(
-                            children: [
-                              Text('None'),
-                              Icon(Icons.unfold_more, size: 18.0)
-                            ],
-                          ),
-                        ],
+                    GestureDetector(
+                      onTap: () => _showInviteesPickerDialog(context),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Invitees'),
+                            Row(
+                              children: [
+                                Text('None'),
+                                Icon(Icons.unfold_more, size: 18.0)
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Alert'),
-                          Row(
-                            children: [
-                              Text('None'),
-                              Icon(Icons.unfold_more, size: 18.0)
-                            ],
-                          ),
-                        ],
+                    GestureDetector(
+                      onTap: () => _showEventAlertPickerDialog(context),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Alert'),
+                            Row(
+                              children: [
+                                Text('None'),
+                                Icon(Icons.unfold_more, size: 18.0)
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Container(

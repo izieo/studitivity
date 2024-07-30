@@ -1,10 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:studitivity/screens/subjects.dart';
+import 'package:studitivity/widgets/subject_picker_dialog.dart';
+import 'package:studitivity/widgets/priority_picker_dialog.dart';
+import 'package:studitivity/widgets/task_alert_picker_dialog.dart';
 
 class NewTaskView extends StatelessWidget {
   const NewTaskView({super.key});
+
+  void _showSubjectPickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const SubjectPickerDialog();
+      },
+    );
+  }
+
+  void _showPriorityPickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const PriorityPickerDialog();
+      },
+    );
+  }
+
+  void _showTaskAlertPickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const TaskAlertPickerDialog();
+      },
+    );
+  }
+
+  void _showDatePicker(BuildContext context) async {
+    await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2030),
+    );
+    showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +88,7 @@ class NewTaskView extends StatelessWidget {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () => Get.to(const SubjectsView()),
+                  onTap: () => _showSubjectPickerDialog(context),
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey),
@@ -61,7 +103,7 @@ class NewTaskView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Subject', style: TextStyle(fontWeight: FontWeight.bold)),
-                        Icon(Icons.arrow_forward_ios, size: 14.0),
+                        Icon(Icons.keyboard_arrow_down, size: 20.0),
                       ],
                     ),
                   ),
@@ -73,8 +115,8 @@ class NewTaskView extends StatelessWidget {
                     color: Colors.transparent,
                   ),
                   margin: const EdgeInsets.only(top: 30.0),
-                  child: TextField(
-                    decoration: const InputDecoration(
+                  child: const TextField(
+                    decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                       hintText: "Title",
                       hintStyle: TextStyle(
@@ -85,9 +127,6 @@ class NewTaskView extends StatelessWidget {
                     ),
                     keyboardType: TextInputType.text,
                     autocorrect: false,
-                    onChanged: (value) {
-                      print('Title: $value');
-                    },
                   ),
                 ),
                 Container(
@@ -97,8 +136,8 @@ class NewTaskView extends StatelessWidget {
                     color: Colors.transparent,
                   ),
                   margin: const EdgeInsets.only(top: 30.0, bottom: 10.0),
-                  child: TextField(
-                    decoration: const InputDecoration(
+                  child: const TextField(
+                    decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                       hintText: "Description",
                       hintStyle: TextStyle(
@@ -110,70 +149,76 @@ class NewTaskView extends StatelessWidget {
                     keyboardType: TextInputType.multiline,
                     autocorrect: false,
                     maxLines: 5,
-                    onChanged: (value) {
-                      print('Description: $value');
-                    },
                   ),
                 ),
-                Row(
-                  children: [
-                    const Icon(Icons.calendar_month),
-                    const SizedBox(width: 10.0),
-                    Text('Due ${DateFormat('dd MMMM, yyyy').format(DateTime.now())}')
-                  ],
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(5.0),
-                    color: Colors.transparent,
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 15.0,
-                    horizontal: 5.0,
-                  ),
-                  margin: const EdgeInsets.only(top: 20.0),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                GestureDetector(
+                  onTap: () => _showDatePicker(context),
+                  child: Row(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(Icons.info, size: 20.0, color: Colors.grey),
-                          SizedBox(width: 10.0),
-                          Text('Low', style: TextStyle(fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                      Icon(Icons.arrow_forward_ios, size: 14.0),
+                      const Icon(Icons.calendar_month),
+                      const SizedBox(width: 10.0),
+                      Text('Due ${DateFormat('dd MMMM, yyyy').format(DateTime.now())}')
                     ],
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(5.0),
-                    color: Colors.transparent,
+                GestureDetector(
+                  onTap: () => _showPriorityPickerDialog(context),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: Colors.transparent,
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 15.0,
+                      horizontal: 5.0,
+                    ),
+                    margin: const EdgeInsets.only(top: 20.0),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(Icons.info, size: 20.0, color: Colors.grey),
+                            SizedBox(width: 10.0),
+                            Text('Priority', style: TextStyle(fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                        Icon(Icons.keyboard_arrow_down, size: 20.0),
+                      ],
+                    ),
                   ),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 15.0,
-                    horizontal: 5.0,
-                  ),
-                  margin: const EdgeInsets.only(top: 20.0),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(Icons.notifications, size: 20.0, color: Colors.grey),
-                          SizedBox(width: 10.0),
-                          Text('On due date, 12:00', style: TextStyle(fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                      Icon(Icons.arrow_forward_ios, size: 14.0),
-                    ],
+                ),
+                GestureDetector(
+                  onTap: () => _showTaskAlertPickerDialog(context),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: Colors.transparent,
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 15.0,
+                      horizontal: 5.0,
+                    ),
+                    margin: const EdgeInsets.only(top: 20.0),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(Icons.notifications, size: 20.0, color: Colors.grey),
+                            SizedBox(width: 10.0),
+                            Text('Alert', style: TextStyle(fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                        Icon(Icons.keyboard_arrow_down, size: 20.0),
+                      ],
+                    ),
                   ),
                 ),
                 TextButton(
