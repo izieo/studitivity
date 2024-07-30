@@ -7,6 +7,14 @@ class InviteesPickerDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomModalDialog(
+      trailing: Padding(
+        padding: const EdgeInsets.only(right: 8.0),
+        child: IconButton(
+          onPressed: () {
+          },
+          icon: const Icon(Icons.add, color: Colors.blue),
+        ),
+      ),
       children: [
         ListTile(
           title: const Text('benjamin@gmail.com', style: TextStyle(fontWeight: FontWeight.bold)),
