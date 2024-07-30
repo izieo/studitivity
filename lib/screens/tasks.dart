@@ -5,6 +5,7 @@ import 'package:studitivity/widgets/pill_switch.dart';
 import 'package:studitivity/widgets/sort_tasks.dart';
 import 'package:studitivity/widgets/task_item.dart';
 import 'package:studitivity/screens/profile.dart'; 
+import 'package:studitivity/screens/notification.dart';
 
 class TaskView extends StatelessWidget {
   const TaskView({super.key});
@@ -46,14 +47,14 @@ class TaskView extends StatelessWidget {
                         onTap: () {},
                         child: const Padding(
                           padding: EdgeInsets.all(6.0),
-                          child: Icon(Icons.search, color: Colors.blue),
+                          child: Icon(Icons.search, color: Color.fromARGB(255, 97, 44, 220), size: 20),
                         ),
                       ),
                       InkWell(
-                        onTap: () => Get.to(const NewTaskView()),
+                        onTap: () => Get.to(const NotificationView()),
                         child: const Padding(
                           padding: EdgeInsets.all(6.0),
-                          child: Icon(Icons.add, color: Colors.blue),
+                          child: Icon(Icons.notifications, color: Color.fromARGB(255, 97, 44, 220), size: 20),
                         ),
                       ),
                       InkWell(
@@ -69,7 +70,7 @@ class TaskView extends StatelessWidget {
                         ),
                         child: const Padding(
                           padding: EdgeInsets.all(6.0),
-                          child: Icon(Icons.more_horiz, color: Colors.blue),
+                          child: Icon(Icons.more_vert, color: Color.fromARGB(255, 97, 44, 220), size: 20,),
                         ),
                       ),
                     ],
@@ -147,6 +148,18 @@ class TaskView extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(bottom: 20.0),
+        child: FloatingActionButton(
+          onPressed: () => Get.to(const NewTaskView()),
+          backgroundColor: const Color.fromARGB(255, 97, 44, 220),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          child: const Icon(Icons.add, color: Colors.white),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

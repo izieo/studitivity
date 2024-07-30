@@ -126,7 +126,7 @@ class GroupsViewState extends State<GroupsView> {
                                 ),
                                 Container(
                                   decoration: const BoxDecoration(
-                                    color: Color.fromARGB(255, 106, 86, 171),
+                                    color: Color.fromARGB(255, 106, 86, 171), //progress color
                                     borderRadius: BorderRadius.all(Radius.circular(50.0)),
                                   ),
                                   height: 15.0,
@@ -334,27 +334,22 @@ class GroupsViewState extends State<GroupsView> {
                 ],
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: GestureDetector(
-                onTap: () => Get.to(const NewGroupView()),
-                child: Container(
-                  margin: const EdgeInsets.all(50.0),
-                  padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 97, 44, 220),
-                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                  ),
-                  child: const Text(
-                    'Create Group',
-                    style: TextStyle(fontSize: 14.0, color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(bottom: 20.0),
+        child: FloatingActionButton.extended(
+           onPressed: () => Get.to(const NewGroupView()),
+          backgroundColor: const Color.fromARGB(255, 97, 44, 220),
+          label: const Text('Group', style: TextStyle(color: Colors.white)),
+          icon: const Icon(Icons.add, color: Colors.white),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
@@ -503,7 +498,7 @@ class StudyGroupCard extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.transparent,
                       borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                    border: Border.all(color: const Color.fromARGB(255, 97, 44, 220))
+                    border: Border.all(color: const Color.fromARGB(255, 96, 67, 194)) 
                   ),
                   child: const Text(
                     'Enter',

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:studitivity/screens/achievements.dart';
 import 'package:studitivity/widgets/pill_switch.dart';
 import 'package:studitivity/screens/profile.dart'; 
+import 'package:studitivity/screens/notification.dart';
 
 class StatsView extends StatelessWidget {
   const StatsView({super.key});
@@ -31,7 +32,7 @@ class StatsView extends StatelessWidget {
                   ),
                   const Spacer(),
                   const Text(
-                    'My Stats',
+                    'Stats',
                     style: TextStyle(
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
@@ -39,18 +40,21 @@ class StatsView extends StatelessWidget {
                   ),
                   const Spacer(),
                   InkWell(
+                    onTap: () => Get.to(const NotificationView()),
+                    child: const Column(
+                      children: [
+                        Icon(Icons.notifications, size: 20.0, color: Color.fromARGB(255, 97, 44, 220)),
+                        SizedBox(height: 5.0),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 10.0),
+                  InkWell(
                     onTap: () {},
                     child: const Column(
                       children: [
-                        Icon(Icons.share, size: 20.0, color: Colors.blue),
+                        Icon(Icons.share, size: 20.0, color: Color.fromARGB(255, 97, 44, 220)),
                         SizedBox(height: 5.0),
-                        Text(
-                          'Share',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
                       ],
                     ),
                   ),

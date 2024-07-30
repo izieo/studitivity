@@ -192,8 +192,7 @@ class FocusTimerCard extends StatelessWidget {
             const Text(
               'Focus',
               style: TextStyle(
-                color: Color.fromARGB(255, 97, 44, 220),
-                fontSize: 16.0
+                fontSize: 16.0,
               ),
             ),
             const SizedBox(height: 10.0),
@@ -204,7 +203,7 @@ class FocusTimerCard extends StatelessWidget {
                 const Icon(Icons.add, size: 30.0),
                 Container(
                   decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 97, 44, 220),
+                    color:  Color.fromARGB(255, 103, 91, 145),
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
                   padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 40.0),
@@ -375,14 +374,12 @@ class BlockAppFeature extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.block, color: Color.fromARGB(255, 97, 44, 220), size: 30.0),
+              Icon(Icons.block, size: 30.0),
               SizedBox(width: 10.0),
               Text(
                 'Block Apps',
                 style: TextStyle(
-                  color: Color.fromARGB(255, 97, 44, 220),
                   fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],

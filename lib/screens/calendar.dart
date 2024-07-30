@@ -6,6 +6,7 @@ import 'package:studitivity/screens/create_event.dart';
 import 'package:studitivity/screens/profile.dart';
 import 'package:studitivity/widgets/event.dart';
 import 'package:studitivity/widgets/pill_switch.dart';
+import 'package:studitivity/screens/notification.dart';
 
 class CalendarView extends StatelessWidget {
   const CalendarView({super.key});
@@ -17,11 +18,13 @@ class CalendarView extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.search, color: Colors.blue),
+            icon: const Icon(Icons.search, color: Color.fromARGB(255, 97, 44, 220), size: 20),
+            iconSize: 20, 
           ),
           IconButton(
-            onPressed: () => Get.to(const NewEventView()),
-            icon: const Icon(Icons.add, color: Colors.blue),
+            onPressed: () => Get.to(const NotificationView()),
+            icon: const Icon(Icons.notifications, color: Color.fromARGB(255, 97, 44, 220), size: 20),
+            iconSize: 20,
           ),
         ],
         automaticallyImplyLeading: false,
@@ -41,7 +44,10 @@ class CalendarView extends StatelessWidget {
         title: Center(
           child: Text(
             '${DateFormat.MMMM().format(DateTime.now())}, ${DateTime.now().year}',
-            style: const TextStyle(color: Colors.blue),
+            style: const TextStyle(
+              fontSize: 22.0,
+              fontWeight: FontWeight.bold,
+            ),
             textAlign: TextAlign.center,
           ),
         ),
@@ -105,6 +111,18 @@ class CalendarView extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(bottom: 20.0),
+        child: FloatingActionButton(
+          onPressed: () => Get.to(const NewEventView()),
+          backgroundColor:  const Color.fromARGB(255, 97, 44, 220),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          child: const Icon(Icons.add, color: Colors.white),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
