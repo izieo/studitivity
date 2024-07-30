@@ -36,7 +36,7 @@ class SubjectPickerDialog extends StatelessWidget {
           ),
           title: const Text('Computer Programming', style: TextStyle(fontWeight: FontWeight.bold)),
           onTap: () {
-            Navigator.pop(context, 'Computer Programming');
+            Navigator.pop(context);
           },
         ),
         ListTile(
@@ -50,7 +50,7 @@ class SubjectPickerDialog extends StatelessWidget {
           ),
           title: const Text('Web Development', style: TextStyle(fontWeight: FontWeight.bold)),
           onTap: () {
-            Navigator.pop(context, 'Web Development');
+            Navigator.pop(context);
           },
         ),
         ListTile(
@@ -64,7 +64,7 @@ class SubjectPickerDialog extends StatelessWidget {
           ),
           title: const Text('Research Skills', style: TextStyle(fontWeight: FontWeight.bold)),
           onTap: () {
-            Navigator.pop(context, 'Research Skills');
+            Navigator.pop(context);
           },
         ),
         ListTile(
@@ -78,7 +78,7 @@ class SubjectPickerDialog extends StatelessWidget {
           ),
           title: const Text('Database Management', style: TextStyle(fontWeight: FontWeight.bold)),
           onTap: () {
-            Navigator.pop(context, 'Database Management');
+            Navigator.pop(context);
           },
         ),
         ListTile(
@@ -90,9 +90,9 @@ class SubjectPickerDialog extends StatelessWidget {
             width: 10.0,
             height: 10.0,
           ),
-          title: const Text('Industrial Experience', style: TextStyle(fontWeight: FontWeight.bold)),
+          title: const Text('Industrial Expertise', style: TextStyle(fontWeight: FontWeight.bold)),
           onTap: () {
-            Navigator.pop(context, 'Industrial Experience');
+            Navigator.pop(context);
           },
         ),
         const SizedBox(height: 20.0),

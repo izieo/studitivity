@@ -4,7 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:studitivity/widgets/subject_picker_dialog.dart';
 import 'package:studitivity/widgets/priority_picker_dialog.dart';
 import 'package:studitivity/widgets/task_alert_picker_dialog.dart';
-
+import 'package:studitivity/widgets/repeat_picker_dialog.dart';
+import 'package:studitivity/widgets/invitees_picker_dialog.dart';
 class NewTaskView extends StatelessWidget {
   const NewTaskView({super.key});
 
@@ -31,6 +32,22 @@ class NewTaskView extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return const TaskAlertPickerDialog();
+      },
+    );
+  }
+  void _showRepeatPickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const RepeatPickerDialog();
+      },
+    );
+  }
+  void _showInviteesPickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const InviteesPickerDialog();
       },
     );
   }
@@ -76,7 +93,7 @@ class NewTaskView extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () => Get.back(),
                       child: const Text(
                         'Save',
                         style: TextStyle(
@@ -221,8 +238,38 @@ class NewTaskView extends StatelessWidget {
                     ),
                   ),
                 ),
+                GestureDetector(
+                  onTap: () => _showRepeatPickerDialog(context),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: Colors.transparent,
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 15.0,
+                      horizontal: 5.0,
+                    ),
+                    margin: const EdgeInsets.only(top: 20.0),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(Icons.repeat, size: 20.0, color: Colors.grey),
+                            SizedBox(width: 10.0),
+                            Text('Recurring', style: TextStyle(fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                        Icon(Icons.keyboard_arrow_down, size: 20.0),
+                      ],
+                    ),
+                  ),
+                ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () => _showInviteesPickerDialog(context),
                   child: const Text(
                     'Add Partner',
                     style: TextStyle(

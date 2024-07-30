@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studitivity/screens/achievements.dart';
 import 'package:studitivity/screens/settings.dart';
 import 'package:studitivity/screens/subjects.dart';
 import 'package:studitivity/controllers/app_controller.dart';
@@ -83,7 +84,7 @@ class ProfileView extends StatelessWidget {
               ),
             ),
             profileCard(Icons.settings, 'Settings', 'Update your preferences', () => Get.to(const SettingsView())),
-            profileCard(Icons.emoji_events, 'Achievements', 'View all achievements you can earn', () {}),
+            profileCard(Icons.emoji_events, 'Achievements', 'View all achievements you can earn', () => Get.to(const Achievements())),
             profileCard(Icons.school, 'Subjects', 'View and edit subjects', () => Get.to(const SubjectsView())),
             profileCard(Icons.quiz, 'FAQ', 'Find answer to frequently asked questions', () {}),
           ],

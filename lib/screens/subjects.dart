@@ -62,7 +62,7 @@ class SubjectsView extends StatelessWidget {
               buildSubjectTab('Web Development', 0xff0000ff),
               buildSubjectTab('Research Skills', 0xff00ff00),
               buildSubjectTab('Database Management', 0xffff00ff),
-              buildSubjectTab('Industrial Experience', 0xff00ffff),
+              buildSubjectTab('Industrial Expertise', 0xff00ffff),
             ],
           ),
         ),

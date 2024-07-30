@@ -122,7 +122,7 @@ class AchievementCard extends StatelessWidget {
                 children: [
                   Container(
                     decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 59, 59, 59),
+                      color: Colors.grey,
                       borderRadius: BorderRadius.all(Radius.circular(50.0)),
                     ),
                     height: 15.0,
@@ -130,7 +130,7 @@ class AchievementCard extends StatelessWidget {
                   ),
                   Container(
                     decoration: const BoxDecoration(
-                      color: Colors.grey,
+                      color:  Color.fromARGB(255, 96, 67, 194),
                       borderRadius: BorderRadius.all(Radius.circular(50.0)),
                     ),
                     height: 15.0,

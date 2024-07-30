@@ -4,11 +4,24 @@ import 'package:studitivity/screens/create_task.dart';
 import 'package:studitivity/widgets/pill_switch.dart';
 import 'package:studitivity/widgets/sort_tasks.dart';
 import 'package:studitivity/widgets/task_item.dart';
-import 'package:studitivity/screens/profile.dart'; 
+import 'package:studitivity/screens/profile.dart';
 import 'package:studitivity/screens/notification.dart';
 
-class TaskView extends StatelessWidget {
+class TaskView extends StatefulWidget {
   const TaskView({super.key});
+
+  @override
+  TaskViewState createState() => TaskViewState();
+}
+
+class TaskViewState extends State<TaskView> {
+  List<Task> tasks = [
+    Task('Computer Programming', 'Practice for exam', Colors.green, 2),
+    Task('Web Development', 'Build wireframe for website', Colors.blue, 2),
+    Task('Database Management', 'Create entity relationship diagram', Colors.red, 1),
+    Task('Industrial Expertise', 'Complete personal development report', Colors.yellow, 0),
+    Task('Research Skills', 'Finish Literature review', Colors.purple, 0),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +75,7 @@ class TaskView extends StatelessWidget {
                           context: context,
                           isScrollControlled: true,
                           shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(20))
+                            borderRadius: BorderRadius.vertical(top: Radius.circular(20))
                           ),
                           builder: (context) {
                             return const Wrap(children: [OrderTasks()]);
@@ -109,39 +122,22 @@ class TaskView extends StatelessWidget {
                 ],
               ),
               Expanded(
-                child: ListView(
-                  children: const [
-                    TaskItem(
-                      priority: 2, //high priority
-                      course: 'Computer Programming',
-                      task: 'Build wireframe',
-                      color: Colors.green,
-                    ),
-                    TaskItem(
-                      priority: 2, //high priority
-                      course: 'Web Development',
-                      task: 'Build wireframe',
-                      color: Colors.blue,
-                    ),
-                    TaskItem(
-                      priority: 1, //medium priority
-                      course: 'Database Management',
-                      task: 'Build prototype',
-                      color: Colors.red,
-                    ),
-                    TaskItem(
-                      priority: 0, //low priority,
-                      course: 'Industrial Expertise',
-                      task: 'Personal development report',
-                      color: Colors.yellow,
-                    ),
-                    TaskItem(
-                      priority: 0, //low priority
-                      course: 'Research Skills',
-                      task: 'Literature review',
-                      color: Colors.purple,
-                    ),
-                  ],
+                child: ListView.builder(
+                  itemCount: tasks.length,
+                  itemBuilder: (context, index) {
+                    return TaskItem(
+                      priority: tasks[index].priority,
+                      course: tasks[index].course,
+                      task: tasks[index].task,
+                      color: tasks[index].color,
+                      isCompleted: tasks[index].isCompleted,
+                      onChanged: (value) {
+                        setState(() {
+                          tasks[index].isCompleted = value;
+                        });
+                      },
+                    );
+                  },
                 ),
               ),
             ],
@@ -162,4 +158,14 @@ class TaskView extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
+}
+
+class Task {
+  final String course;
+  final String task;
+  final Color color;
+  final int priority;
+  bool isCompleted;
+
+  Task(this.course, this.task, this.color, this.priority, {this.isCompleted = false});
 }

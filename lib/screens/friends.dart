@@ -38,6 +38,14 @@ class FriendsView extends StatelessWidget {
               size: 20.0,
             ),
           ),
+           Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Icon(
+              Icons.person_add,
+              color: Color.fromARGB(255, 97, 44, 220),
+              size: 20.0,
+            ),
+          ),
         ],
       ),
       body: SafeArea(

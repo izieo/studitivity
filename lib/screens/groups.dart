@@ -135,7 +135,7 @@ class GroupsViewState extends State<GroupsView> {
                               ],
                             ),
                             const SizedBox(width: 20.0),
-                            const Text('10m/20m', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+                            const Text('10mins/20mins', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
                           ],
                         ),
                       ],
