@@ -17,7 +17,7 @@ class ProfileView extends StatelessWidget {
           GestureDetector(
             onTap: () {
               Get.find<AppController>().logout();
-              },
+            },
             child: const Center(
               child: Padding(
                 padding: EdgeInsets.only(right: 10.0),
@@ -46,42 +46,55 @@ class ProfileView extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(5.0),
-                color: Colors.transparent,
-              ),
-              padding: const EdgeInsets.symmetric(
-                vertical: 15.0,
-                horizontal: 5.0,
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(10.0),
-                    child: const CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        'https://media.licdn.com/dms/image/C5603AQEoy5iwuDZxDA/profile-displayphoto-shrink_400_400/0/1649584891937?e=1726704000&v=beta&t=2jTi9_v7RypOpiLM0IVoFJYTGgapRboF595y6bUAFdU'
+            Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    borderRadius: BorderRadius.circular(5.0),
+                    color: Colors.transparent,
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 15.0,
+                    horizontal: 5.0,
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(10.0),
+                        child: const CircleAvatar(
+                          backgroundImage: NetworkImage(
+                            'https://media.licdn.com/dms/image/C5603AQEoy5iwuDZxDA/profile-displayphoto-shrink_400_400/0/1649584891937?e=1726704000&v=beta&t=2jTi9_v7RypOpiLM0IVoFJYTGgapRboF595y6bUAFdU'
+                          ),
+                          radius: 20.0,
+                        ),
                       ),
-                      radius: 20.0,
-                    ),
+                      const Text(
+                        'Izie',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                      ),
+                      const Text(
+                        'Postgraduate Student at Sheffield Hallam University',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
-                  const Text(
-                    'Izie',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                ),
+                Positioned(
+                  top: 15,
+                  right: 15,
+                  child: IconButton(
+                    icon: const Icon(Icons.edit, color: Colors.blue),
+                    onPressed: () {
+                    },
                   ),
-                  const Text(
-                    'Postgraduate Student at Sheffield Hallam University',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
             profileCard(Icons.settings, 'Settings', 'Update your preferences', () => Get.to(const SettingsView())),
             profileCard(Icons.emoji_events, 'Achievements', 'View all achievements you can earn', () => Get.to(const Achievements())),
