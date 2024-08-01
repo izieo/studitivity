@@ -7,6 +7,7 @@ import 'package:studitivity/screens/profile.dart';
 import 'package:studitivity/widgets/event.dart';
 import 'package:studitivity/widgets/pill_switch.dart';
 import 'package:studitivity/screens/notification.dart';
+import 'package:studitivity/widgets/notification_badge.dart';
 
 class CalendarView extends StatelessWidget {
   const CalendarView({super.key});
@@ -25,8 +26,7 @@ class CalendarView extends StatelessWidget {
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
               onPressed: () => Get.to(const NotificationView()),
-              icon: const Icon(Icons.notifications, color: Color.fromARGB(255, 97, 44, 220), size: 20),
-              iconSize: 20,
+              icon: const NotificationBadge(),
             ),
           ),
         ],

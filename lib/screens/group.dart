@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studitivity/screens/notification.dart';
 import 'package:studitivity/screens/block_apps.dart';
-
+import 'package:studitivity/widgets/notification_badge.dart';
 class GroupDetailsView extends StatelessWidget {
   const GroupDetailsView({super.key});
 
@@ -76,11 +76,7 @@ class GroupDetailsView extends StatelessWidget {
                         onTap: () => Get.to(const NotificationView()),
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.notifications,
-                            color: Color.fromARGB(255, 97, 44, 220),
-                            size: 20.0,
-                          ),
+                          child: NotificationBadge(),
                         ),
                       ),
                     ],

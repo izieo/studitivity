@@ -105,13 +105,24 @@ class NewEventViewState extends State<NewEventView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 10, bottom: 5.0),
+                      child: Text(
+                        '*required',
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                     Container(
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
                         borderRadius: BorderRadius.circular(5.0),
                         color: Colors.transparent,
                       ),
-                      margin: const EdgeInsets.only(top: 30.0),
+                      margin: const EdgeInsets.only(bottom: 30.0),
                       child: TextField(
                         decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -135,7 +146,7 @@ class NewEventViewState extends State<NewEventView> {
                         borderRadius: BorderRadius.circular(5.0),
                         color: Colors.transparent,
                       ),
-                      margin: const EdgeInsets.only(top: 30.0, bottom: 10.0),
+                      margin: const EdgeInsets.only(top: 5.0, bottom: 10.0),
                       child: TextField(
                         decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -160,6 +171,9 @@ class NewEventViewState extends State<NewEventView> {
                         const Text('All-day'),
                         Switch(
                           value: isAllDay,
+                          activeColor: Colors.white,
+                          activeTrackColor: Colors.green,
+                          inactiveThumbColor: Colors.grey[800],
                           onChanged: (value) {
                             setState(() {
                               isAllDay = value;
@@ -316,7 +330,7 @@ class NewEventViewState extends State<NewEventView> {
                         borderRadius: BorderRadius.circular(5.0),
                         color: Colors.transparent,
                       ),
-                      margin: const EdgeInsets.only(top: 30.0, bottom: 10.0),
+                      margin: const EdgeInsets.only(top: 20.0, bottom: 10.0),
                       child: TextField(
                         decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),

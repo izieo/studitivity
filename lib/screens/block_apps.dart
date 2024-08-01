@@ -40,19 +40,17 @@ class BlockAppsPageState extends State<BlockAppsPage> {
                           padding: EdgeInsets.all(8.0),
                           child: Icon(
                             Icons.arrow_back_ios,
-                            color: Color.fromARGB(255, 97, 44, 220),
+                            color: Colors.blue,
                             size: 20.0,
                           ),
                         ),
                         onTap: () => Get.back(),
                       ),
-                      const SizedBox(width: 10.0),
+                      const SizedBox(width: 70.0),
                       const Text(
                         'Block Apps',
                         style: TextStyle(
                           fontSize: 22.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 97, 44, 220),
                         ),
                       ),
                     ],
@@ -64,7 +62,7 @@ class BlockAppsPageState extends State<BlockAppsPage> {
                     child: const Text(
                       'Save',
                       style: TextStyle(
-                        color: Color.fromARGB(255, 97, 44, 220),
+                        color: Colors.blue,
                         fontSize: 16.0,
                       ),
                     ),
@@ -76,6 +74,9 @@ class BlockAppsPageState extends State<BlockAppsPage> {
                 children: [
                   Switch(
                     value: _blockAll,
+                    activeColor: Colors.white,
+                    activeTrackColor: Colors.green,
+                    inactiveThumbColor: Colors.grey[800],
                     onChanged: (bool value) {
                       setState(() {
                         _blockAll = value;
@@ -110,6 +111,9 @@ class BlockAppsPageState extends State<BlockAppsPage> {
                       title: Text(appList[index]),
                       trailing: Switch(
                         value: _appBlockStatus[index],
+                        activeColor: Colors.white,
+                        activeTrackColor: Colors.green,
+                        inactiveThumbColor: Colors.grey[800],
                         onChanged: (bool value) {
                           setState(() {
                             _appBlockStatus[index] = value;

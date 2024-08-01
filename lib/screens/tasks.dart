@@ -6,6 +6,7 @@ import 'package:studitivity/widgets/sort_tasks.dart';
 import 'package:studitivity/widgets/task_item.dart';
 import 'package:studitivity/screens/profile.dart';
 import 'package:studitivity/screens/notification.dart';
+import 'package:studitivity/widgets/notification_badge.dart';
 
 class TaskView extends StatefulWidget {
   const TaskView({super.key});
@@ -22,6 +23,14 @@ class TaskViewState extends State<TaskView> {
     Task('Industrial Expertise', 'Complete personal development report', Colors.yellow, 0),
     Task('Research Skills', 'Finish Literature review', Colors.purple, 0),
   ];
+
+  String selectedFilter = 'Today';
+
+  void updateFilter(String filter) {
+    setState(() {
+      selectedFilter = filter;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +77,7 @@ class TaskViewState extends State<TaskView> {
                         onTap: () => Get.to(const NotificationView()),
                         child: const Padding(
                           padding: EdgeInsets.all(6.0),
-                          child: Icon(Icons.notifications, color: Color.fromARGB(255, 97, 44, 220), size: 20),
+                          child: NotificationBadge(),
                         ),
                       ),
                       const SizedBox(width: 5.0),
@@ -93,32 +102,43 @@ class TaskViewState extends State<TaskView> {
                 ],
               ),
               const SizedBox(height: 15.0),
-              PillSwitch(items: const ['Current', 'Completed']),
+              PillSwitch(items: const ['Current (5)', 'Completed']),
               const SizedBox(height: 15.0),
-              const Row(
+              Row(
                 children: [
-                  Text(
-                    'Today',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
+                  GestureDetector(
+                    onTap: () => updateFilter('Today'),
+                    child: Text(
+                      'Today',
+                      style: TextStyle(
+                        color: selectedFilter == 'Today' ? Colors.blue : Colors.black,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                  SizedBox(width: 20.0),
-                  Text(
-                    'Tomorrow',
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
+                  const SizedBox(width: 20.0),
+                  GestureDetector(
+                    onTap: () => updateFilter('Tomorrow'),
+                    child: Text(
+                      'Tomorrow',
+                      style: TextStyle(
+                        color: selectedFilter == 'Tomorrow' ? Colors.blue : Colors.black,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                  SizedBox(width: 20.0),
-                  Text(
-                    'All',
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
+                  const SizedBox(width: 20.0),
+                  GestureDetector(
+                    onTap: () => updateFilter('All'),
+                    child: Text(
+                      'All',
+                      style: TextStyle(
+                        color: selectedFilter == 'All' ? Colors.blue : Colors.black,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],

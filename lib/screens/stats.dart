@@ -4,6 +4,7 @@ import 'package:studitivity/screens/achievements.dart';
 import 'package:studitivity/widgets/pill_switch.dart';
 import 'package:studitivity/screens/profile.dart'; 
 import 'package:studitivity/screens/notification.dart';
+import 'package:studitivity/widgets/notification_badge.dart';
 
 class StatsView extends StatelessWidget {
   const StatsView({super.key});
@@ -43,7 +44,7 @@ class StatsView extends StatelessWidget {
                     onTap: () => Get.to(const NotificationView()),
                     child: const Column(
                       children: [
-                        Icon(Icons.notifications, size: 20.0, color: Color.fromARGB(255, 97, 44, 220)),
+                        NotificationBadge(),
                         SizedBox(height: 5.0),
                       ],
                     ),

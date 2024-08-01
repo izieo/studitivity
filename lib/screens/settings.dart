@@ -139,7 +139,12 @@ class SettingsViewState extends State<SettingsView> {
               ],
             ),
             addSwitch
-              ? Switch(value: switchValue, onChanged: onSwitchChanged)
+              ? Switch(value: switchValue, 
+              onChanged: onSwitchChanged, 
+              activeColor: Colors.white, 
+              activeTrackColor: Colors.green,
+              inactiveThumbColor: Colors.grey[800],
+              )
               : const Icon(Icons.keyboard_arrow_down, size: 20.0, color: Colors.black),
           ],
         ),
