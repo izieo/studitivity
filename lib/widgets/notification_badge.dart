@@ -24,7 +24,7 @@ class NotificationBadge extends StatelessWidget {
             padding: const EdgeInsets.all(1),
             decoration: BoxDecoration(
               color: Colors.red,
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(20),
             ),
             constraints: BoxConstraints(
               minWidth: iconSize * 0.5,

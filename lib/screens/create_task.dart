@@ -5,7 +5,7 @@ import 'package:studitivity/widgets/subject_picker_dialog.dart';
 import 'package:studitivity/widgets/priority_picker_dialog.dart';
 import 'package:studitivity/widgets/task_alert_picker_dialog.dart';
 import 'package:studitivity/widgets/repeat_picker_dialog.dart';
-import 'package:studitivity/widgets/invitees_picker_dialog.dart';
+
 class NewTaskView extends StatelessWidget {
   const NewTaskView({super.key});
 
@@ -40,14 +40,6 @@ class NewTaskView extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return const RepeatPickerDialog();
-      },
-    );
-  }
-  void _showInviteesPickerDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return const InviteesPickerDialog();
       },
     );
   }
@@ -210,7 +202,7 @@ class NewTaskView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Icon(Icons.info, size: 20.0, color: Colors.grey),
+                            Icon(Icons.priority_high, size: 20.0, color: Colors.grey),
                             SizedBox(width: 10.0),
                             Text('Priority', style: TextStyle(fontWeight: FontWeight.bold)),
                           ],
@@ -277,16 +269,6 @@ class NewTaskView extends StatelessWidget {
                         ),
                         Icon(Icons.keyboard_arrow_down, size: 20.0),
                       ],
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () => _showInviteesPickerDialog(context),
-                  child: const Text(
-                    'Add Partner',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
