@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studitivity/controllers/settings_controller.dart'; 
 
-class SettingsView extends StatefulWidget {
+class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
 
   @override
-  SettingsViewState createState() => SettingsViewState();
-}
-
-class SettingsViewState extends State<SettingsView> {
-  bool emailNotifications = true;
-  bool pushNotifications = true;
-  bool streakFeature = true;
-
-  @override
   Widget build(BuildContext context) {
+    final SettingsController controller = Get.put(SettingsController());
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -22,7 +16,6 @@ class SettingsViewState extends State<SettingsView> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.blue),
           onPressed: () => Get.back(),
-          color: Colors.black,
         ),
         elevation: 0,
         title: const Text(
@@ -48,26 +41,29 @@ class SettingsViewState extends State<SettingsView> {
               const Divider(color: Colors.black),
               settingsTile(Icons.calendar_today, 'Import Calendar'),
               const Divider(color: Colors.black),
-              settingsTile(Icons.notifications, 'Email Notifications', 
-                  addSwitch: true, switchValue: emailNotifications, onSwitchChanged: (value) {
-                setState(() {
-                  emailNotifications = value;
-                });
-              }),
+              Obx(() => settingsTile(
+                Icons.notifications,
+                'Email Notifications',
+                addSwitch: true,
+                switchValue: controller.emailNotifications.value,
+                onSwitchChanged: controller.toggleEmailNotifications,
+              )),
               const Divider(color: Colors.black),
-              settingsTile(Icons.dark_mode, 'Push Notifications', 
-                  addSwitch: true, switchValue: pushNotifications, onSwitchChanged: (value) {
-                setState(() {
-                  pushNotifications = value;
-                });
-              }),
+              Obx(() => settingsTile(
+                Icons.dark_mode,
+                'Push Notifications',
+                addSwitch: true,
+                switchValue: controller.pushNotifications.value,
+                onSwitchChanged: controller.togglePushNotifications,
+              )),
               const Divider(color: Colors.black),
-              settingsTile(Icons.electric_bolt, 'Streak Feature', 
-                  addSwitch: true, switchValue: streakFeature, onSwitchChanged: (value) {
-                setState(() {
-                  streakFeature = value;
-                });
-              }),
+              Obx(() => settingsTile(
+                Icons.electric_bolt,
+                'Streak Feature',
+                addSwitch: true,
+                switchValue: controller.streakFeature.value,
+                onSwitchChanged: controller.toggleStreakFeature,
+              )),
             ]),
             const SizedBox(height: 20.0),
             settingsGroup([
@@ -81,7 +77,6 @@ class SettingsViewState extends State<SettingsView> {
                   builder: (_) {
                     return AlertDialog(
                       title: const Text('Are you sure you want to delete your account?'),
-                      // content: const Text('Dialog Content'),
                       actions: [
                         TextButton(
                           onPressed: Get.back,
@@ -100,7 +95,7 @@ class SettingsViewState extends State<SettingsView> {
             ]),
           ],
         ),
-      )
+      ),
     );
   }
 
@@ -139,13 +134,14 @@ class SettingsViewState extends State<SettingsView> {
               ],
             ),
             addSwitch
-              ? Switch(value: switchValue, 
-              onChanged: onSwitchChanged, 
-              activeColor: Colors.white, 
-              activeTrackColor: Colors.green,
-              inactiveThumbColor: Colors.grey[800],
-              )
-              : const Icon(Icons.keyboard_arrow_down, size: 20.0, color: Colors.black),
+                ? Switch(
+                    value: switchValue,
+                    onChanged: onSwitchChanged,
+                    activeColor: Colors.white,
+                    activeTrackColor: Colors.green,
+                    inactiveThumbColor: Colors.grey[800],
+                  )
+                : const Icon(Icons.keyboard_arrow_down, size: 20.0, color: Colors.black),
           ],
         ),
       ),

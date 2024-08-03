@@ -12,7 +12,7 @@ class SubjectsView extends StatelessWidget {
         automaticallyImplyLeading: false,
         leading: GestureDetector(
           onTap: () => Get.back(),
-          child: const Icon(Icons.arrow_back_ios, color: Colors.black),
+          child: const Icon(Icons.arrow_back_ios, color: Colors.blue),
         ),
         backgroundColor: Colors.white,
         elevation: 0,

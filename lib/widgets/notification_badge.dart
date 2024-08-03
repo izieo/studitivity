@@ -8,7 +8,7 @@ class NotificationBadge extends StatelessWidget {
   const NotificationBadge({
     super.key,
     this.notificationCount = 5,
-    this.iconSize = 20.0,
+    this.iconSize = 30.0,
     this.iconColor = const Color.fromARGB(255, 97, 44, 220),
   });
 

@@ -7,33 +7,15 @@ import 'package:studitivity/widgets/task_item.dart';
 import 'package:studitivity/screens/profile.dart';
 import 'package:studitivity/screens/notification.dart';
 import 'package:studitivity/widgets/notification_badge.dart';
+import 'package:studitivity/controllers/task_controller.dart'; 
 
-class TaskView extends StatefulWidget {
+class TaskView extends StatelessWidget {
   const TaskView({super.key});
 
   @override
-  TaskViewState createState() => TaskViewState();
-}
-
-class TaskViewState extends State<TaskView> {
-  List<Task> tasks = [
-    Task('Computer Programming', 'Practice for exam', Colors.green, 2),
-    Task('Web Development', 'Build wireframe for website', Colors.blue, 2),
-    Task('Database Management', 'Create entity relationship diagram', Colors.red, 1),
-    Task('Industrial Expertise', 'Complete personal development report', Colors.yellow, 0),
-    Task('Research Skills', 'Finish Literature review', Colors.purple, 0),
-  ];
-
-  String selectedFilter = 'Today';
-
-  void updateFilter(String filter) {
-    setState(() {
-      selectedFilter = filter;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final TaskController controller = Get.put(TaskController());
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -69,7 +51,7 @@ class TaskViewState extends State<TaskView> {
                         onTap: () {},
                         child: const Padding(
                           padding: EdgeInsets.all(6.0),
-                          child: Icon(Icons.search, color: Color.fromARGB(255, 97, 44, 220), size: 20),
+                          child: Icon(Icons.search, color: Color.fromARGB(255, 97, 44, 220), size: 24),
                         ),
                       ),
                       const SizedBox(width: 5.0),
@@ -94,7 +76,7 @@ class TaskViewState extends State<TaskView> {
                         ),
                         child: const Padding(
                           padding: EdgeInsets.all(6.0),
-                          child: Icon(Icons.more_vert, color: Color.fromARGB(255, 97, 44, 220), size: 20,),
+                          child: Icon(Icons.more_vert, color: Color.fromARGB(255, 97, 44, 220), size: 24,),
                         ),
                       ),
                     ],
@@ -107,60 +89,58 @@ class TaskViewState extends State<TaskView> {
               Row(
                 children: [
                   GestureDetector(
-                    onTap: () => updateFilter('Today'),
-                    child: Text(
+                    onTap: () => controller.updateFilter('Today'),
+                    child: Obx(() => Text(
                       'Today',
                       style: TextStyle(
-                        color: selectedFilter == 'Today' ? Colors.blue : Colors.black,
+                        color: controller.selectedFilter.value == 'Today' ? Colors.blue : Colors.black,
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
+                    )),
                   ),
                   const SizedBox(width: 20.0),
                   GestureDetector(
-                    onTap: () => updateFilter('Tomorrow'),
-                    child: Text(
+                    onTap: () => controller.updateFilter('Tomorrow'),
+                    child: Obx(() => Text(
                       'Tomorrow',
                       style: TextStyle(
-                        color: selectedFilter == 'Tomorrow' ? Colors.blue : Colors.black,
+                        color: controller.selectedFilter.value == 'Tomorrow' ? Colors.blue : Colors.black,
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
+                    )),
                   ),
                   const SizedBox(width: 20.0),
                   GestureDetector(
-                    onTap: () => updateFilter('All'),
-                    child: Text(
+                    onTap: () => controller.updateFilter('All'),
+                    child: Obx(() => Text(
                       'All',
                       style: TextStyle(
-                        color: selectedFilter == 'All' ? Colors.blue : Colors.black,
+                        color: controller.selectedFilter.value == 'All' ? Colors.blue : Colors.black,
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
+                    )),
                   ),
                 ],
               ),
               Expanded(
-                child: ListView.builder(
-                  itemCount: tasks.length,
+                child: Obx(() => ListView.builder(
+                  itemCount: controller.tasks.length,
                   itemBuilder: (context, index) {
-                    return TaskItem(
-                      priority: tasks[index].priority,
-                      course: tasks[index].course,
-                      task: tasks[index].task,
-                      color: tasks[index].color,
-                      isCompleted: tasks[index].isCompleted,
+                    return Obx(() => TaskItem(
+                      priority: controller.tasks[index].priority,
+                      course: controller.tasks[index].course,
+                      task: controller.tasks[index].task,
+                      color: controller.tasks[index].color,
+                      isCompleted: controller.tasks[index].isCompleted.value,
                       onChanged: (value) {
-                        setState(() {
-                          tasks[index].isCompleted = value;
-                        });
+                        controller.tasks[index].isCompleted.value = value;
                       },
-                    );
+                    ));
                   },
-                ),
+                )),
               ),
             ],
           ),
@@ -180,14 +160,4 @@ class TaskViewState extends State<TaskView> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
-}
-
-class Task {
-  final String course;
-  final String task;
-  final Color color;
-  final int priority;
-  bool isCompleted;
-
-  Task(this.course, this.task, this.color, this.priority, {this.isCompleted = false});
 }

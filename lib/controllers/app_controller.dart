@@ -5,6 +5,10 @@ import 'package:studitivity/auth_page.dart';
 
 
 class AppController extends GetxController {
+  var selectedIndex = 0.obs;
+  var isAllDay = false.obs;
+
+
   @override
   void onReady() {
     super.onReady();
@@ -21,5 +25,14 @@ class AppController extends GetxController {
     FirebaseAuth.instance.signOut();
     Get.offAll(() => Login());
   }
+void onItemTapped(int index) {
+    selectedIndex.value = index;
+  }
+
+  void toggleAllDay(bool value) {
+    isAllDay.value = value;
+  }
+
+
 }
 

@@ -54,7 +54,7 @@ class StatsView extends StatelessWidget {
                     onTap: () {},
                     child: const Column(
                       children: [
-                        Icon(Icons.share, size: 20.0, color: Color.fromARGB(255, 97, 44, 220)),
+                        Icon(Icons.share, size: 24.0, color: Color.fromARGB(255, 97, 44, 220)),
                         SizedBox(height: 5.0),
                       ],
                     ),

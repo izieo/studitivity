@@ -17,7 +17,7 @@ class Achievements extends StatelessWidget {
             child: Icon(
               Icons.arrow_back_ios,
               color: Colors.blue,
-              size: 20.0,
+              size: 24.0,
             ),
           ),
         ),
@@ -122,7 +122,7 @@ class AchievementCard extends StatelessWidget {
                 children: [
                   Container(
                     decoration: const BoxDecoration(
-                      color: Colors.grey,
+                      color: Color.fromARGB(255, 218, 217, 217),
                       borderRadius: BorderRadius.all(Radius.circular(50.0)),
                     ),
                     height: 15.0,
@@ -130,7 +130,7 @@ class AchievementCard extends StatelessWidget {
                   ),
                   Container(
                     decoration: const BoxDecoration(
-                      color:  Color.fromARGB(255, 96, 67, 194),
+                      color:  Color.fromARGB(255, 106, 86, 171),
                       borderRadius: BorderRadius.all(Radius.circular(50.0)),
                     ),
                     height: 15.0,

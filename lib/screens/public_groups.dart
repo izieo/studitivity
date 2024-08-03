@@ -17,17 +17,15 @@ class PublicGroupsView extends StatelessWidget {
             padding: EdgeInsets.all(8.0),
             child: Icon(
               Icons.arrow_back_ios,
-              color: Color.fromARGB(255, 97, 44, 220),
-              size: 20.0,
+              color: Colors.blue,
+              size: 24.0,
             ),
           ),
         ),
         title: const Text(
           'Public Groups',
           style: TextStyle(
-            fontSize: 22.0,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 97, 44, 220),
+            fontSize: 18.0,
           ),
         ),
         actions: [
@@ -37,8 +35,8 @@ class PublicGroupsView extends StatelessWidget {
               padding: EdgeInsets.all(20.0),
               child: Icon(
                 Icons.search,
-                color: Color.fromARGB(255, 97, 44, 220),
-                size: 20.0,
+                color: Colors.blue,
+                size: 24.0,
               ),
             ),
           ),

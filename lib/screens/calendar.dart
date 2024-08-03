@@ -19,8 +19,7 @@ class CalendarView extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.search, color: Color.fromARGB(255, 97, 44, 220), size: 20),
-            iconSize: 20, 
+            icon: const Icon(Icons.search, color: Color.fromARGB(255, 97, 44, 220), size: 24),
           ),         
           Padding(
             padding: const EdgeInsets.only(right: 10.0),

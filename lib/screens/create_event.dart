@@ -5,64 +5,15 @@ import 'package:studitivity/widgets/repeat_picker_dialog.dart';
 import 'package:studitivity/widgets/calendar_picker_dialog.dart';
 import 'package:studitivity/widgets/invitees_picker_dialog.dart';
 import 'package:studitivity/widgets/event_alert_picker_dialog.dart';
+import 'package:studitivity/controllers/app_controller.dart'; 
 
-class NewEventView extends StatefulWidget {
+class NewEventView extends StatelessWidget {
   const NewEventView({super.key});
 
   @override
-  NewEventViewState createState() => NewEventViewState();
-}
-
-class NewEventViewState extends State<NewEventView> {
-  bool isAllDay = false;
-
-  void _showTravelTimePickerDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return const TravelTimePickerDialog();
-      },
-    );
-  }
-
-  void _showRepeatPickerDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return const RepeatPickerDialog();
-      },
-    );
-  }
-
-  void _showCalendarPickerDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return const CalendarPickerDialog();
-      },
-    );
-  }
-
-  void _showInviteesPickerDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return const InviteesPickerDialog();
-      },
-    );
-  }
-
-  void _showEventAlertPickerDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return const EventAlertPickerDialog();
-      },
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final AppController controller = Get.find<AppController>();
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -169,17 +120,13 @@ class NewEventViewState extends State<NewEventView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text('All-day'),
-                        Switch(
-                          value: isAllDay,
+                        Obx(() => Switch(
+                          value: controller.isAllDay.value,
                           activeColor: Colors.white,
                           activeTrackColor: Colors.green,
                           inactiveThumbColor: Colors.grey[800],
-                          onChanged: (value) {
-                            setState(() {
-                              isAllDay = value;
-                            });
-                          },
-                        ),
+                          onChanged: controller.toggleAllDay,
+                        )),
                       ],
                     ),
                     Row(
@@ -371,6 +318,51 @@ class NewEventViewState extends State<NewEventView> {
         text,
         style: const TextStyle(color: Colors.grey),
       ),
+    );
+  }
+
+  void _showTravelTimePickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const TravelTimePickerDialog();
+      },
+    );
+  }
+
+  void _showRepeatPickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const RepeatPickerDialog();
+      },
+    );
+  }
+
+  void _showCalendarPickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const CalendarPickerDialog();
+      },
+    );
+  }
+
+  void _showInviteesPickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const InviteesPickerDialog();
+      },
+    );
+  }
+
+  void _showEventAlertPickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const EventAlertPickerDialog();
+      },
     );
   }
 }

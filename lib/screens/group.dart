@@ -3,11 +3,14 @@ import 'package:get/get.dart';
 import 'package:studitivity/screens/notification.dart';
 import 'package:studitivity/screens/block_apps.dart';
 import 'package:studitivity/widgets/notification_badge.dart';
+import 'package:studitivity/controllers/app_controller.dart';
+
 class GroupDetailsView extends StatelessWidget {
   const GroupDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final AppController controller = Get.find<AppController>();
     double itemWidth = (MediaQuery.of(context).size.width - 40) / 2;
 
     return Scaffold(
@@ -27,7 +30,7 @@ class GroupDetailsView extends StatelessWidget {
                           child: Icon(
                             Icons.arrow_back_ios,
                             color: Color.fromARGB(255, 97, 44, 220),
-                            size: 20.0,
+                            size: 24.0,
                           ),
                         ),
                         onTap: () => Get.back(),
@@ -36,7 +39,7 @@ class GroupDetailsView extends StatelessWidget {
                       Container(
                         decoration: const BoxDecoration(
                           color: Color.fromARGB(255, 97, 44, 220),
-                          borderRadius: BorderRadius.all(Radius.circular(5.0))
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 12.0),
                         child: const Text('Izie\'s Study Group', style: TextStyle(color: Colors.white)),
@@ -50,7 +53,7 @@ class GroupDetailsView extends StatelessWidget {
                         child: const Icon(
                           Icons.search,
                           color: Color.fromARGB(255, 97, 44, 220),
-                          size: 20.0,
+                          size: 24.0,
                         ),
                       ),
                       const SizedBox(width: 5.0),
@@ -73,7 +76,7 @@ class GroupDetailsView extends StatelessWidget {
                       ),
                       const SizedBox(width: 5.0),
                       InkWell(
-                        onTap: () => Get.to(const NotificationView()),
+                        onTap: () => Get.to(() => const NotificationView()),
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
                           child: NotificationBadge(),
@@ -90,13 +93,10 @@ class GroupDetailsView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 10.0),
                     Align(
                       alignment: Alignment.center,
                       child: InkWell(
-                        onTap: () {
-                          Get.to(() => const BlockAppsPage());
-                        },
+                        onTap: () => Get.to(() => const BlockAppsPage()),
                         child: const BlockAppFeature(),
                       ),
                     ),
@@ -111,6 +111,7 @@ class GroupDetailsView extends StatelessWidget {
                           time: '1:02:31',
                           image: 'https://media.licdn.com/dms/image/C5603AQEoy5iwuDZxDA/profile-displayphoto-shrink_400_400/0/1649584891937?e=1726704000&v=beta&t=2jTi9_v7RypOpiLM0IVoFJYTGgapRboF595y6bUAFdU',
                           width: itemWidth,
+                          micStatus: 'off', 
                         ),
                         PersonalFocusTimer(
                           name: 'Benjamin',
@@ -118,6 +119,7 @@ class GroupDetailsView extends StatelessWidget {
                           time: '2:10:02',
                           image: 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-moh-adbelghaffar-771742.jpg&fm=jpg&_gl=1*1n4jr4g*_ga=NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6=MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
                           width: itemWidth,
+                          micStatus: 'on', 
                         ),
                         PersonalFocusTimer(
                           name: 'Jeremiah',
@@ -125,6 +127,7 @@ class GroupDetailsView extends StatelessWidget {
                           time: '1:20:11',
                           image: 'https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?cs=srgb&dl=pexels-andrewpersonaltraining-697509.jpg&fm=jpg&_gl=1*85wvqc*_ga=NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6=MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
                           width: itemWidth,
+                          micStatus: 'off', 
                         ),
                         PersonalFocusTimer(
                           name: 'Dara',
@@ -132,6 +135,7 @@ class GroupDetailsView extends StatelessWidget {
                           time: '30:00',
                           image: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-55958-614810.jpg&fm=jpg&_gl=1*svk2ei*_ga=NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6=MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NzAyOC4wLjAuMA..',
                           width: itemWidth,
+                          micStatus: 'off', 
                         ),
                       ],
                     ),
@@ -139,29 +143,37 @@ class GroupDetailsView extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              decoration: const BoxDecoration(
-                color: Colors.black45,
-                  borderRadius: BorderRadius.all(Radius.circular(50.0))
-              ),
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                margin: const EdgeInsets.only(left: 30.0, right: 30.0, bottom: 10.0),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(width: 5.0),
-                  Icon(Icons.videocam_off, color: Colors.white, size: 30.0),
-                  Icon(Icons.mic_off, color: Colors.white, size: 30.0),
-                  Icon(Icons.forum, color: Colors.white, size: 30.0),
-                  Icon(Icons.group_add, color: Colors.white, size: 30.0),
-                  Icon(Icons.settings, color: Colors.white, size: 30.0),
-                  SizedBox(width: 5.0),
-                ],
-              ),
-            ),
           ],
         ),
       ),
+      bottomNavigationBar: Obx(() => BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.videocam_off),
+            label: 'Video',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.mic_off),
+            label: 'Mic',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.forum),
+            label: 'Chat',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.group_add),
+            label: 'Add',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
+        currentIndex: controller.selectedIndex.value,
+        selectedItemColor: Colors.blue,
+        onTap: controller.onItemTapped,
+        type: BottomNavigationBarType.fixed,
+      )),
     );
   }
 }
@@ -270,6 +282,7 @@ class PersonalFocusTimer extends StatelessWidget {
     required this.time,
     required this.image,
     required this.width,
+    required this.micStatus,
   });
 
   final String name;
@@ -277,6 +290,7 @@ class PersonalFocusTimer extends StatelessWidget {
   final String time;
   final String image;
   final double width;
+  final String micStatus;
 
   @override
   Widget build(BuildContext context) {
@@ -317,9 +331,28 @@ class PersonalFocusTimer extends StatelessWidget {
               ),
             ],
           ),
-          CircleAvatar(
-            backgroundImage: NetworkImage(image),
-            radius: 40.0,
+          Stack(
+            children: [
+              CircleAvatar(
+                backgroundImage: NetworkImage(image),
+                radius: 40.0,
+              ),
+              Positioned(
+                right: 0,
+                bottom: 0,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: micStatus == 'on' ? Colors.green : Colors.red,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    micStatus == 'on' ? Icons.mic : Icons.mic_off,
+                    color: Colors.white,
+                    size: 20.0,
+                  ),
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 3.0),
           Container(

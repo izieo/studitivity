@@ -1,27 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studitivity/controllers/block_apps_controller.dart';
 
-class BlockAppsPage extends StatefulWidget {
+class BlockAppsPage extends StatelessWidget {
   const BlockAppsPage({super.key});
 
   @override
-  BlockAppsPageState createState() => BlockAppsPageState();
-}
-
-class BlockAppsPageState extends State<BlockAppsPage> {
-  bool _blockAll = false; 
-  List<bool> _appBlockStatus = [false, false, false, false, false, false]; 
-
-  @override
   Widget build(BuildContext context) {
-    final List<String> appList = [
-      'WhatsApp',
-      'Facebook',
-      'Instagram',
-      'Twitter',
-      'Snapchat',
-      'YouTube',
-    ];
+    final BlockAppsController controller = Get.put(BlockAppsController());
 
     return Scaffold(
       body: SafeArea(
@@ -41,7 +27,7 @@ class BlockAppsPageState extends State<BlockAppsPage> {
                           child: Icon(
                             Icons.arrow_back_ios,
                             color: Colors.blue,
-                            size: 20.0,
+                            size: 24.0,
                           ),
                         ),
                         onTap: () => Get.back(),
@@ -50,7 +36,7 @@ class BlockAppsPageState extends State<BlockAppsPage> {
                       const Text(
                         'Block Apps',
                         style: TextStyle(
-                          fontSize: 22.0,
+                          fontSize: 18.0,
                         ),
                       ),
                     ],
@@ -70,27 +56,26 @@ class BlockAppsPageState extends State<BlockAppsPage> {
                 ],
               ),
               const SizedBox(height: 20.0),
-              Row(
-                children: [
-                  Switch(
-                    value: _blockAll,
-                    activeColor: Colors.white,
-                    activeTrackColor: Colors.green,
-                    inactiveThumbColor: Colors.grey[800],
-                    onChanged: (bool value) {
-                      setState(() {
-                        _blockAll = value;
-                        _appBlockStatus = List<bool>.filled(appList.length, value);
-                      });
-                    },
-                  ),
-                  const SizedBox(width: 8.0),
-                  Text(
-                    'Block All Apps',
-                    style: TextStyle(fontSize: 16.0, color: Colors.grey[700]),
-                  ),
-                ],
-              ),
+              Obx(() {
+                return Row(
+                  children: [
+                    Switch(
+                      value: controller.blockAll.value,
+                      activeColor: Colors.white,
+                      activeTrackColor: Colors.green,
+                      inactiveThumbColor: Colors.grey[800],
+                      onChanged: (bool value) {
+                        controller.toggleBlockAll(value);
+                      },
+                    ),
+                    const SizedBox(width: 8.0),
+                    Text(
+                      'Block All Apps',
+                      style: TextStyle(fontSize: 16.0, color: Colors.grey[700]),
+                    ),
+                  ],
+                );
+              }),
               const SizedBox(height: 10.0),
               TextField(
                 decoration: InputDecoration(
@@ -103,26 +88,26 @@ class BlockAppsPageState extends State<BlockAppsPage> {
               ),
               const SizedBox(height: 10.0),
               Expanded(
-                child: ListView.builder(
-                  itemCount: appList.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      leading: const Icon(Icons.apps), 
-                      title: Text(appList[index]),
-                      trailing: Switch(
-                        value: _appBlockStatus[index],
-                        activeColor: Colors.white,
-                        activeTrackColor: Colors.green,
-                        inactiveThumbColor: Colors.grey[800],
-                        onChanged: (bool value) {
-                          setState(() {
-                            _appBlockStatus[index] = value;
-                          });
-                        },
-                      ),
-                    );
-                  },
-                ),
+                child: Obx(() {
+                  return ListView.builder(
+                    itemCount: controller.appList.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        leading: const Icon(Icons.apps),
+                        title: Text(controller.appList[index]),
+                        trailing: Switch(
+                          value: controller.appBlockStatus[index],
+                          activeColor: Colors.white,
+                          activeTrackColor: Colors.green,
+                          inactiveThumbColor: Colors.grey[800],
+                          onChanged: (bool value) {
+                            controller.toggleAppBlockStatus(index, value);
+                          },
+                        ),
+                      );
+                    },
+                  );
+                }),
               ),
             ],
           ),

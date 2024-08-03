@@ -16,28 +16,27 @@ class FriendsView extends StatelessWidget {
             padding: EdgeInsets.all(8.0),
             child: Icon(
               Icons.arrow_back_ios,
-              color: Color.fromARGB(255, 97, 44, 220),
-              size: 20.0,
+              color: Colors.blue,
+              size: 24.0,
             ),
           ),
         ),
         title: const Text(
           'Friends',
           style: TextStyle(
-            fontSize: 22.0,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 97, 44, 220),
+            fontSize: 18.0,
           ),
         ),
+        centerTitle: true,
         actions:  [
           InkWell(
             onTap: () {},
             child: const Padding(
-              padding: EdgeInsets.all(5.0),
+              padding: EdgeInsets.all(20.0),
               child: Icon(
                 Icons.search,
-                color: Color.fromARGB(255, 97, 44, 220),
-                size: 20.0,
+                color: Colors.blue,
+                size: 24.0,
               ),
             ),
           ),
@@ -47,8 +46,8 @@ class FriendsView extends StatelessWidget {
               padding: EdgeInsets.all(20.0),
               child: Icon(
                 Icons.person_add,
-                color: Color.fromARGB(255, 97, 44, 220),
-                size: 20.0,
+                color: Colors.blue,
+                size: 24.0,
               ),
                        ),
            ),
@@ -66,7 +65,7 @@ class FriendsView extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 97, 44, 220),
+                    backgroundColor: const Color.fromARGB(255, 106, 86, 171),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),

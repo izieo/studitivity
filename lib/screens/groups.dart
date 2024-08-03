@@ -7,21 +7,15 @@ import 'package:studitivity/screens/friends.dart';
 import 'package:studitivity/screens/public_groups.dart';
 import 'package:studitivity/screens/profile.dart'; 
 import 'package:studitivity/widgets/notification_badge.dart';
+import 'package:studitivity/controllers/groups_controller.dart'; 
 
-class GroupsView extends StatefulWidget {
+class GroupsView extends StatelessWidget {
   const GroupsView({super.key});
 
   @override
-  GroupsViewState createState() => GroupsViewState();
-}
-
-class GroupsViewState extends State<GroupsView> {
-  bool isFriendsExpanded = false;
-  bool isPublicGroupsExpanded = false;
-  bool isMyGroupsExpanded = false;
-
-  @override
   Widget build(BuildContext context) {
+    final GroupsController controller = Get.put(GroupsController());
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -37,7 +31,7 @@ class GroupsViewState extends State<GroupsView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
-                          onTap: () => Get.to(const ProfileView()), 
+                          onTap: () => Get.to(() => const ProfileView()),  
                           child: const CircleAvatar(
                             backgroundImage: NetworkImage(
                               'https://media.licdn.com/dms/image/C5603AQEoy5iwuDZxDA/profile-displayphoto-shrink_400_400/0/1649584891937?e=1726704000&v=beta&t=2jTi9_v7RypOpiLM0IVoFJYTGgapRboF595y6bUAFdU',
@@ -59,7 +53,7 @@ class GroupsViewState extends State<GroupsView> {
                               child: const Icon(
                                 Icons.search,
                                 color: Color.fromARGB(255, 97, 44, 220),
-                                size: 20.0,
+                                size: 24.0,
                               ),
                             ),
                             const SizedBox(width: 5.0),
@@ -82,7 +76,7 @@ class GroupsViewState extends State<GroupsView> {
                             ),
                             const SizedBox(width: 5.0),
                             InkWell(
-                              onTap: () => Get.to(const NotificationView()),
+                              onTap: () => Get.to(() => const NotificationView()),
                               child: const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: NotificationBadge(),
@@ -150,11 +144,7 @@ class GroupsViewState extends State<GroupsView> {
                       child: ListView(
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                isFriendsExpanded = !isFriendsExpanded;
-                              });
-                            },
+                            onTap: controller.toggleFriendsExpanded,
                             child: Container(
                               color: Colors.transparent,
                               padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -165,15 +155,15 @@ class GroupsViewState extends State<GroupsView> {
                                     'Friends',
                                     style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                                   ),
-                                  Icon(isFriendsExpanded
+                                  Obx(() => Icon(controller.isFriendsExpanded.value
                                       ? Icons.keyboard_arrow_up
-                                      : Icons.keyboard_arrow_down),
+                                      : Icons.keyboard_arrow_down)),
                                 ],
                               ),
                             ),
                           ),
-                          if (isFriendsExpanded)
-                            Column(
+                          Obx(() => controller.isFriendsExpanded.value
+                            ? Column(
                               children: [
                                 SizedBox(
                                   height: 140.0,
@@ -204,21 +194,18 @@ class GroupsViewState extends State<GroupsView> {
                                   ),
                                 ),
                                 GestureDetector(
-                                  onTap: () => Get.to(const FriendsView()),
+                                  onTap: () => Get.to(() => const FriendsView()),  
                                   child: const Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text('See All', style: TextStyle(color: Colors.blue)),
                                   ),
                                 ),
                               ],
-                            ),
+                            )
+                            : const SizedBox.shrink()),
                           const SizedBox(height: 20.0),
                           GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                isPublicGroupsExpanded = !isPublicGroupsExpanded;
-                              });
-                            },
+                            onTap: controller.togglePublicGroupsExpanded,
                             child: Container(
                               color: Colors.transparent,
                               padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -229,15 +216,15 @@ class GroupsViewState extends State<GroupsView> {
                                     'Public Groups',
                                     style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                                   ),
-                                  Icon(isPublicGroupsExpanded
+                                  Obx(() => Icon(controller.isPublicGroupsExpanded.value
                                       ? Icons.keyboard_arrow_up
-                                      : Icons.keyboard_arrow_down),
+                                      : Icons.keyboard_arrow_down)),
                                 ],
                               ),
                             ),
                           ),
-                          if (isPublicGroupsExpanded)
-                            Column(
+                          Obx(() => controller.isPublicGroupsExpanded.value
+                            ? Column(
                               children: [
                                 SizedBox(
                                   height: 160.0,
@@ -284,21 +271,18 @@ class GroupsViewState extends State<GroupsView> {
                                   ),
                                 ),
                                 GestureDetector(
-                                  onTap: () => Get.to(const PublicGroupsView()),
+                                  onTap: () => Get.to(() => const PublicGroupsView()),  
                                   child: const Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text('See All', style: TextStyle(color: Colors.blue)),
                                   ),
                                 ),
                               ],
-                            ),
+                            )
+                            : const SizedBox.shrink()),
                           const SizedBox(height: 20.0),
                           GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                isMyGroupsExpanded = !isMyGroupsExpanded;
-                              });
-                            },
+                            onTap: controller.toggleMyGroupsExpanded,
                             child: Container(
                               color: Colors.transparent,
                               padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -309,15 +293,15 @@ class GroupsViewState extends State<GroupsView> {
                                     'My Groups',
                                     style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                                   ),
-                                  Icon(isMyGroupsExpanded
+                                  Obx(() => Icon(controller.isMyGroupsExpanded.value
                                       ? Icons.keyboard_arrow_up
-                                      : Icons.keyboard_arrow_down),
+                                      : Icons.keyboard_arrow_down)),
                                 ],
                               ),
                             ),
                           ),
-                          if (isMyGroupsExpanded)
-                            const SizedBox(
+                          Obx(() => controller.isMyGroupsExpanded.value
+                            ? const SizedBox(
                               height: 160.0,
                               child: StudyGroupCard(
                                 name: 'Izie\'s Study Group',
@@ -331,7 +315,8 @@ class GroupsViewState extends State<GroupsView> {
                                   'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?cs=srgb&dl=pexels-pixabay-415829.jpg&fm=jpg&_gl=1*17z916h*_ga=NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6=MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
                                 ],
                               ),
-                            ),
+                            )
+                            : const SizedBox.shrink()),
                           const SizedBox(height: 100.0),
                         ],
                       ),
@@ -346,7 +331,7 @@ class GroupsViewState extends State<GroupsView> {
       floatingActionButton: Container(
         margin: const EdgeInsets.only(bottom: 20.0),
         child: FloatingActionButton.extended(
-           onPressed: () => Get.to(const NewGroupView()),
+           onPressed: () => Get.to(() => const NewGroupView()), 
           backgroundColor: const Color.fromARGB(255, 97, 44, 220),
           label: const Text('Group', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16.0)),
           icon: const Icon(Icons.add, color: Colors.white),
@@ -428,12 +413,13 @@ class StudyGroupCard extends StatelessWidget {
   final String pictureUrl;
   final int numOnline;
   final int numMembers;
-  final List<String> members;
+  final List<String> members;  
+  
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.to(const GroupDetailsView()),
+      onTap: () => Get.to(() => const GroupDetailsView()),  
       child: Container(
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(15.0)),

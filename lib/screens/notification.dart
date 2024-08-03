@@ -17,7 +17,7 @@ class NotificationView extends StatelessWidget {
             child: Icon(
               Icons.arrow_back_ios,
               color: Colors.blue,
-              size: 20.0,
+              size: 24.0,
             ),
           ),
         ),
