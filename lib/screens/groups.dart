@@ -234,7 +234,7 @@ class GroupsView extends StatelessWidget {
                                       StudyGroupCard(
                                         name: 'Jerry\'s Study Group',
                                         pictureUrl: 'https://images.stockcake.com/public/6/c/0/6c059b01-9f0f-4d29-b56e-1cf1bac44156_large/zebras-at-dusk-stockcake.jpg',
-                                        numOnline: 1,
+                                        numOnline: 4,
                                         numMembers: 238,
                                         members: [
                               'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-moh-adbelghaffar-771742.jpg&fm=jpg&_gl=1*1n4jr4g*_ga*NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6*MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',
@@ -306,7 +306,7 @@ class GroupsView extends StatelessWidget {
                               child: StudyGroupCard(
                                 name: 'Izie\'s Study Group',
                                 pictureUrl: 'https://images.stockcake.com/public/0/e/c/0ec46d36-1e97-484d-9332-f1bb231b80d2_large/flamingos-at-dusk-stockcake.jpg',
-                                numOnline: 5,
+                                numOnline: 4,
                                 numMembers: 30,
                                 members: [
                                   'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-moh-adbelghaffar-771742.jpg&fm=jpg&_gl=1*1n4jr4g*_ga=NzcyNDA1OTcuMTcyMTc5Mzk2Mg..*_ga_8JE65Q40S6=MTcyMTc5Mzk2Mi4xLjEuMTcyMTc5NjA0My4wLjAuMA..',

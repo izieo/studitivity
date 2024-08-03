@@ -95,15 +95,17 @@ class BlockAppsPage extends StatelessWidget {
                       return ListTile(
                         leading: const Icon(Icons.apps),
                         title: Text(controller.appList[index]),
-                        trailing: Switch(
-                          value: controller.appBlockStatus[index],
-                          activeColor: Colors.white,
-                          activeTrackColor: Colors.green,
-                          inactiveThumbColor: Colors.grey[800],
-                          onChanged: (bool value) {
-                            controller.toggleAppBlockStatus(index, value);
-                          },
-                        ),
+                        trailing: Obx(() {
+                          return Switch(
+                            value: controller.appBlockStatus[index],
+                            activeColor: Colors.white,
+                            activeTrackColor: Colors.green,
+                            inactiveThumbColor: Colors.grey[800],
+                            onChanged: (bool value) {
+                              controller.toggleAppBlockStatus(index, value);
+                            },
+                          );
+                        }),
                       );
                     },
                   );
